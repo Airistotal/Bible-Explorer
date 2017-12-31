@@ -1,0 +1,16 @@
+﻿@using BE_webapp.Models
+
+@model Tuple<List<bible_version_key>, BibleChapter>
+
+@{
+    BibleChapter currPage = Model.Item2;
+}
+
+<div id="bible_tabs">
+    @foreach (var item in Model.Item1)
+    {
+        <div class="bible_tab">
+            @Html.ActionLink(item.abbreviation, "Index", new { Bible = item.id, B = currPage.B, C = currPage.C })
+        </div>
+    }
+</div>

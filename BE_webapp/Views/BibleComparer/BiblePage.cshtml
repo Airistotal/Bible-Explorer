@@ -1,0 +1,7 @@
+﻿@using BE_webapp.Models
+
+@model BibleChapter
+
+@Html.Partial("PageHeader", new bibex_dbEntities().usp_GetChapterInfo(Model.B, Model.C))
+
+@Html.Partial("PagedContent", new bibex_dbEntities().usp_GetChapter(Model.Bible, Model.B, Model.C))

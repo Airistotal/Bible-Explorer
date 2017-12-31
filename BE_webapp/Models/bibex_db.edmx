@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bibex_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bible_version_key">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="table" Type="text" Nullable="false" />
+          <Property Name="abbreviation" Type="text" Nullable="false" />
+          <Property Name="language" Type="text" Nullable="false" />
+          <Property Name="version" Type="text" Nullable="false" />
+          <Property Name="info_text" Type="text" Nullable="false" />
+          <Property Name="info_url" Type="text" Nullable="false" />
+          <Property Name="publisher" Type="text" Nullable="false" />
+          <Property Name="copyright" Type="text" Nullable="false" />
+          <Property Name="copyright_info" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="key_abbreviations_english">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="a" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="b" Type="int" Nullable="false" />
+          <Property Name="p" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="key_english">
+          <Key>
+            <PropertyRef Name="b" />
+          </Key>
+          <Property Name="b" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="n" Type="text" Nullable="false" />
+          <Property Name="t" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="g" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="key_genre_english">
+          <Key>
+            <PropertyRef Name="g" />
+          </Key>
+          <Property Name="g" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="n" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Function Name="usp_GetChapter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="book" Type="int" Mode="In" />
+          <Parameter Name="chapter" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetChapterInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="book" Type="int" Mode="In" />
+          <Parameter Name="chapter" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetVerse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bible" Type="int" Mode="In" />
+          <Parameter Name="book" Type="int" Mode="In" />
+          <Parameter Name="chapter" Type="int" Mode="In" />
+          <Parameter Name="verse" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="bibex_dbModelStoreContainer">
+          <EntitySet Name="bible_version_key" EntityType="Self.bible_version_key" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="key_abbreviations_english" EntityType="Self.key_abbreviations_english" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="key_english" EntityType="Self.key_english" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="key_genre_english" EntityType="Self.key_genre_english" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bibex_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="bibex_dbEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="bible_version_key" EntityType="bibex_dbModel.bible_version_key" />
+          <EntitySet Name="key_abbreviations_english" EntityType="bibex_dbModel.key_abbreviations_english" />
+          <EntitySet Name="key_english" EntityType="bibex_dbModel.key_english" />
+          <EntitySet Name="key_genre_english" EntityType="bibex_dbModel.key_genre_english" />
+          <FunctionImport Name="usp_GetVerse" ReturnType="Collection(bibex_dbModel.BibleVerse)">
+            <Parameter Name="bible" Mode="In" Type="Int32" />
+            <Parameter Name="book" Mode="In" Type="Int32" />
+            <Parameter Name="chapter" Mode="In" Type="Int32" />
+            <Parameter Name="verse" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetChapterInfo" ReturnType="Collection(bibex_dbModel.usp_GetChapterInfo_Result)">
+            <Parameter Name="book" Mode="In" Type="Int32" />
+            <Parameter Name="chapter" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetChapter" ReturnType="Collection(bibex_dbModel.BibleVerse)">
+            <Parameter Name="book" Mode="In" Type="Int32" />
+            <Parameter Name="chapter" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="bible_version_key">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="table" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="abbreviation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="language" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="version" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="info_text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="info_url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="publisher" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="copyright" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="copyright_info" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="key_abbreviations_english">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="a" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="b" Type="Int32" Nullable="false" />
+          <Property Name="p" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="key_english">
+          <Key>
+            <PropertyRef Name="b" />
+          </Key>
+          <Property Name="b" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="n" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="t" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="g" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="key_genre_english">
+          <Key>
+            <PropertyRef Name="g" />
+          </Key>
+          <Property Name="g" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="n" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="BibleVerse" >
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="b" Nullable="false" />
+          <Property Type="Int32" Name="c" Nullable="false" />
+          <Property Type="Int32" Name="v" Nullable="false" />
+          <Property Type="String" Name="t" Nullable="false" />
+          <Property Type="Int32" Name="BibleID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_GetChapterInfo_Result">
+          <Property Type="String" Name="BookName" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="BookGenre" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="Chapter" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bibex_dbModelStoreContainer" CdmEntityContainer="bibex_dbEntities" >
+          <EntitySetMapping Name="bible_version_key">
+            <EntityTypeMapping TypeName="bibex_dbModel.bible_version_key">
+              <MappingFragment StoreEntitySet="bible_version_key">
+                <ScalarProperty Name="copyright_info" ColumnName="copyright_info" />
+                <ScalarProperty Name="copyright" ColumnName="copyright" />
+                <ScalarProperty Name="publisher" ColumnName="publisher" />
+                <ScalarProperty Name="info_url" ColumnName="info_url" />
+                <ScalarProperty Name="info_text" ColumnName="info_text" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
+                <ScalarProperty Name="table" ColumnName="table" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="key_abbreviations_english">
+            <EntityTypeMapping TypeName="bibex_dbModel.key_abbreviations_english">
+              <MappingFragment StoreEntitySet="key_abbreviations_english">
+                <ScalarProperty Name="p" ColumnName="p" />
+                <ScalarProperty Name="b" ColumnName="b" />
+                <ScalarProperty Name="a" ColumnName="a" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="key_english">
+            <EntityTypeMapping TypeName="bibex_dbModel.key_english">
+              <MappingFragment StoreEntitySet="key_english">
+                <ScalarProperty Name="g" ColumnName="g" />
+                <ScalarProperty Name="t" ColumnName="t" />
+                <ScalarProperty Name="n" ColumnName="n" />
+                <ScalarProperty Name="b" ColumnName="b" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="key_genre_english">
+            <EntityTypeMapping TypeName="bibex_dbModel.key_genre_english">
+              <MappingFragment StoreEntitySet="key_genre_english">
+                <ScalarProperty Name="n" ColumnName="n" />
+                <ScalarProperty Name="g" ColumnName="g" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetVerse" FunctionName="bibex_dbModel.Store.usp_GetVerse" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bibex_dbModel.BibleVerse" >
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="b" ColumnName="b" />
+                <ScalarProperty Name="c" ColumnName="c" />
+                <ScalarProperty Name="v" ColumnName="v" />
+                <ScalarProperty Name="t" ColumnName="t" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetChapterInfo" FunctionName="bibex_dbModel.Store.usp_GetChapterInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bibex_dbModel.usp_GetChapterInfo_Result">
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookGenre" ColumnName="BookGenre" />
+                <ScalarProperty Name="Chapter" ColumnName="Chapter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetChapter" FunctionName="bibex_dbModel.Store.usp_GetChapter" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bibex_dbModel.BibleVerse">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="b" ColumnName="b" />
+                <ScalarProperty Name="c" ColumnName="c" />
+                <ScalarProperty Name="v" ColumnName="v" />
+                <ScalarProperty Name="t" ColumnName="t" />
+                <ScalarProperty Name="BibleID" ColumnName="BibleID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

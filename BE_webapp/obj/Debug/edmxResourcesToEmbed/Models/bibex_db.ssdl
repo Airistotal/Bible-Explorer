@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bibex_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bible_version_key">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="table" Type="text" Nullable="false" />
+    <Property Name="abbreviation" Type="text" Nullable="false" />
+    <Property Name="language" Type="text" Nullable="false" />
+    <Property Name="version" Type="text" Nullable="false" />
+    <Property Name="info_text" Type="text" Nullable="false" />
+    <Property Name="info_url" Type="text" Nullable="false" />
+    <Property Name="publisher" Type="text" Nullable="false" />
+    <Property Name="copyright" Type="text" Nullable="false" />
+    <Property Name="copyright_info" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="key_abbreviations_english">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="a" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="b" Type="int" Nullable="false" />
+    <Property Name="p" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="key_english">
+    <Key>
+      <PropertyRef Name="b" />
+    </Key>
+    <Property Name="b" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="n" Type="text" Nullable="false" />
+    <Property Name="t" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="g" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="key_genre_english">
+    <Key>
+      <PropertyRef Name="g" />
+    </Key>
+    <Property Name="g" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="n" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Function Name="usp_GetChapter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="book" Type="int" Mode="In" />
+    <Parameter Name="chapter" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetChapterInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="book" Type="int" Mode="In" />
+    <Parameter Name="chapter" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetVerse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bible" Type="int" Mode="In" />
+    <Parameter Name="book" Type="int" Mode="In" />
+    <Parameter Name="chapter" Type="int" Mode="In" />
+    <Parameter Name="verse" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="bibex_dbModelStoreContainer">
+    <EntitySet Name="bible_version_key" EntityType="Self.bible_version_key" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="key_abbreviations_english" EntityType="Self.key_abbreviations_english" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="key_english" EntityType="Self.key_english" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="key_genre_english" EntityType="Self.key_genre_english" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
