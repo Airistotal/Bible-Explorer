@@ -1,0 +1,8 @@
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Infrastructure\bin\Debug\netcoreapp2.1\BE.Infrastructure.deps.json
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Infrastructure\bin\Debug\netcoreapp2.1\BE.Infrastructure.dll
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Infrastructure\bin\Debug\netcoreapp2.1\BE.Infrastructure.pdb
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Infrastructure\obj\Debug\netcoreapp2.1\BE.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Infrastructure\obj\Debug\netcoreapp2.1\BE.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Infrastructure\obj\Debug\netcoreapp2.1\BE.Infrastructure.AssemblyInfo.cs
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Infrastructure\obj\Debug\netcoreapp2.1\BE.Infrastructure.dll
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Infrastructure\obj\Debug\netcoreapp2.1\BE.Infrastructure.pdb

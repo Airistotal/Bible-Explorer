@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bibex_dbModelStoreContainer" CdmEntityContainer="bibex_dbEntities">
+    <EntitySetMapping Name="bible_version_key">
+      <EntityTypeMapping TypeName="bibex_dbModel.bible_version_key">
+        <MappingFragment StoreEntitySet="bible_version_key">
+          <ScalarProperty Name="copyright_info" ColumnName="copyright_info" />
+          <ScalarProperty Name="copyright" ColumnName="copyright" />
+          <ScalarProperty Name="publisher" ColumnName="publisher" />
+          <ScalarProperty Name="info_url" ColumnName="info_url" />
+          <ScalarProperty Name="info_text" ColumnName="info_text" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
+          <ScalarProperty Name="table" ColumnName="table" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="key_abbreviations_english">
+      <EntityTypeMapping TypeName="bibex_dbModel.key_abbreviations_english">
+        <MappingFragment StoreEntitySet="key_abbreviations_english">
+          <ScalarProperty Name="p" ColumnName="p" />
+          <ScalarProperty Name="b" ColumnName="b" />
+          <ScalarProperty Name="a" ColumnName="a" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="key_english">
+      <EntityTypeMapping TypeName="bibex_dbModel.key_english">
+        <MappingFragment StoreEntitySet="key_english">
+          <ScalarProperty Name="g" ColumnName="g" />
+          <ScalarProperty Name="t" ColumnName="t" />
+          <ScalarProperty Name="n" ColumnName="n" />
+          <ScalarProperty Name="b" ColumnName="b" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="key_genre_english">
+      <EntityTypeMapping TypeName="bibex_dbModel.key_genre_english">
+        <MappingFragment StoreEntitySet="key_genre_english">
+          <ScalarProperty Name="n" ColumnName="n" />
+          <ScalarProperty Name="g" ColumnName="g" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetChapterInfo" FunctionName="bibex_dbModel.Store.usp_GetChapterInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="bibex_dbModel.usp_GetChapterInfo_Result">
+          <ScalarProperty Name="BookName" ColumnName="BookName" />
+          <ScalarProperty Name="BookGenre" ColumnName="BookGenre" />
+          <ScalarProperty Name="Chapter" ColumnName="Chapter" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetChapter" FunctionName="bibex_dbModel.Store.usp_GetChapter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="bibex_dbModel.BibleVerse">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="b" ColumnName="b" />
+          <ScalarProperty Name="c" ColumnName="c" />
+          <ScalarProperty Name="v" ColumnName="v" />
+          <ScalarProperty Name="t" ColumnName="t" />
+          <ScalarProperty Name="bible_id" ColumnName="bible_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetVerse" FunctionName="bibex_dbModel.Store.usp_GetVerse">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="bibex_dbModel.BibleVerse">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="b" ColumnName="b" />
+          <ScalarProperty Name="c" ColumnName="c" />
+          <ScalarProperty Name="v" ColumnName="v" />
+          <ScalarProperty Name="t" ColumnName="t" />
+          <ScalarProperty Name="bible_id" ColumnName="bible_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

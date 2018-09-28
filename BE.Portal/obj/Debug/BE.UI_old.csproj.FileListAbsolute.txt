@@ -1,0 +1,4 @@
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Portal\obj\Debug\BE.UI_old.csprojAssemblyReference.cache
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Portal\obj\Debug\BE.UI_old.csproj.CoreCompileInputs.cache
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Portal\obj\Debug\BE_webapp.dll
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Portal\obj\Debug\BE_webapp.pdb
