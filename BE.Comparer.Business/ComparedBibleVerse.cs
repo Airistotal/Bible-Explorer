@@ -1,7 +1,7 @@
 ﻿namespace BE.Comparer.Models
 {
+    using BE.Comparer.BLL;
     using BE.Comparer.Business;
-    using BE.Comparer.Models;
     using System;
     using System.Collections.Generic;
 
@@ -18,6 +18,7 @@
         public ComparedBibleVerse(ITextDiff txtDiff)
         {
             comparedVerses = new Dictionary<int, Tuple<BibleVerse, CompareResult>>();
+            this.txtDiff = txtDiff;
         }
 
         public ComparedBibleVerse(ITextDiff txtDiff, BibleVerse verse) : this(txtDiff)

@@ -1,4 +1,9 @@
-C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\obj\Debug\netstandard2.0\BE.Comparer.BLL.csprojAssemblyReference.cache
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\bin\Debug\netstandard2.0\BE.Comparer.BLL.deps.json
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\bin\Debug\netstandard2.0\BE.Comparer.BLL.dll
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\bin\Debug\netstandard2.0\BE.Comparer.BLL.pdb
 C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\obj\Debug\netstandard2.0\BE.Comparer.BLL.csproj.CoreCompileInputs.cache
 C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\obj\Debug\netstandard2.0\BE.Comparer.BLL.AssemblyInfoInputs.cache
 C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\obj\Debug\netstandard2.0\BE.Comparer.BLL.AssemblyInfo.cs
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\obj\Debug\netstandard2.0\BE.Comparer.BLL.dll
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\obj\Debug\netstandard2.0\BE.Comparer.BLL.pdb
+C:\Users\Daniel\Documents\Repos\Bible Explorer\BE.Comparer.Business\obj\Debug\netstandard2.0\BE.Comparer.BLL.csprojAssemblyReference.cache

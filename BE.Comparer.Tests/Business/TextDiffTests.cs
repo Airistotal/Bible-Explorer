@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BE.Comparer.Business;
+using BE.Comparer.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BE_webapp.Business;
 using System.Linq;
-using BE_webapp.Models;
 
 namespace BE_webapp.Tests
 {
@@ -16,7 +14,9 @@ namespace BE_webapp.Tests
             string orig = "a b c";
             string other = "a b d";
 
-            CompareResult result = TextDiff.GetTextDifferences(orig, other);
+            TextDiff sut = new TextDiff();
+
+            CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 1);
             Assert.IsTrue(result.Differences[0].index_from == 2);
@@ -31,7 +31,9 @@ namespace BE_webapp.Tests
             string orig = "a b c";
             string other = "b c";
 
-            CompareResult result = TextDiff.GetTextDifferences(orig, other);
+            TextDiff sut = new TextDiff();
+
+            CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 1);
             Assert.IsTrue(result.Differences[0].index_from_orig == 0);
@@ -46,7 +48,9 @@ namespace BE_webapp.Tests
             string orig = "b d";
             string other = "b d e";
 
-            CompareResult result = TextDiff.GetTextDifferences(orig, other);
+            TextDiff sut = new TextDiff();
+
+            CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 1);
             Assert.IsTrue(result.Differences[0].index_from_orig == 2);
@@ -61,7 +65,9 @@ namespace BE_webapp.Tests
             string orig = "a b c d e f a d";
             string other = "a b l d e a d h";
 
-            CompareResult result = TextDiff.GetTextDifferences(orig, other);
+            TextDiff sut = new TextDiff();
+
+            CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 3);
             Assert.IsTrue(result.Differences[0].index_from == 2);
@@ -86,7 +92,9 @@ namespace BE_webapp.Tests
             string orig = "a b c d e f";
             string other = "d e f a b c";
 
-            CompareResult result = TextDiff.GetTextDifferences(orig, other);
+            TextDiff sut = new TextDiff();
+
+            CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 2);
             Assert.IsTrue(result.Differences[0].index_from_orig == 0);
