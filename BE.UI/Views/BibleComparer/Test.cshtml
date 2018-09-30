@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        .border {
+            display: inline;
+            border: solid 1px red;
+            background-color: rgba(255, 20, 20, 0.1);
+            padding: 2px 0 2px 0;
+        }
+
+        .border2 {
+            display: inline;
+            border: solid 1px green;
+            background-color: rgba(20, 255, 20, 0.1);
+        }
+
+        .spacer {
+            position: relative;
+            display: inline;
+            white-space: nowrap;
+            padding-right: 1px;
+            left: 0;
+        }
+
+        .text {
+            position: relative;
+            line-height: 25px;
+        }
+
+        .content {
+            display: inline;
+        }
+
+        .overlay {
+            position: absolute;
+            color: rgba(1, 1, 1, 0);
+        }
+
+        #a {
+        }
+
+        #b {
+        }
+    </style>
+</head>
+<body>
+    <div class="text">
+        <div class="overlay" id="a">
+            <div class="border">
+                &nbsp;
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 	quis aliquam mauris, non rutrum nunc. Vestibulum vitae
+                <div class="spacer">&nbsp;</div>
+                eros justo. Aenean dui purus, viverra ut faucibus in, placerat ac quam. Maecenas sapien mauris, suscipit at ante ut,
+            </div>
+            pulvinar lacinia purus. Ut tempus vitae ligula et lacinia. Integer consequat,
+            <div class="spacer"></div>
+            <div class="border">
+                &nbsp;
+                orci sit amet efficitur consectetur, lectus dui viverra tortor, ut varius nulla odio ut nisi. Ut sed volutpat velit. Nullam at placerat odio. Fusce id diam
+                <div class="spacer">&nbsp;</div>
+                lectus.
+                &nbsp;&nbsp;
+            </div>
+        </div>
+
+        <div class="overlay" id="b">
+            <div class="spacer">&nbsp;</div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis aliquam mauris, non rutrum nunc. Vestibulum vitae
+
+            <div class="border2">
+                &nbsp;
+                eros justo. Aenean dui purus, viverra ut faucibus in, placerat ac quam. Maecenas sapien mauris, suscipit at ante ut,
+                <div class="spacer"></div>
+                pulvinar lacinia purus. Ut tempus vitae ligula et lacinia. Integer consequat,
+            </div>
+
+            <div class="spacer">&nbsp;</div>
+            orci sit amet efficitur consectetur, lectus dui viverra tortor, ut varius nulla odio ut nisi. Ut sed volutpat velit. Nullam at placerat odio. Fusce id diam
+
+            <div class="border2">
+                &nbsp;
+                lectus.
+                &nbsp;
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="spacer">&nbsp;</div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce 	quis aliquam mauris, non rutrum nunc. Vestibulum vitae
+            <div class="spacer">&nbsp;</div>
+            eros justo. Aenean dui purus, viverra ut faucibus in, placerat ac quam. Maecenas sapien mauris, suscipit at ante ut,
+            <div class="spacer"></div>
+            pulvinar lacinia purus. Ut tempus vitae ligula et lacinia. Integer consequat,
+            <div class="spacer"></div>
+            <div class="spacer">&nbsp;</div>
+            orci sit amet efficitur consectetur, lectus dui viverra tortor, ut varius nulla odio ut nisi. Ut sed volutpat velit. Nullam at placerat odio. Fusce id diam
+            <div class="spacer">&nbsp;</div>
+            lectus.
+            <div class="spacer"></div>
+        </div>
+    </div>
+</body>
