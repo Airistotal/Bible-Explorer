@@ -1,10 +1,9 @@
-﻿using BE.Comparer.Business;
-using BE.Comparer.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-
-namespace BE_webapp.Tests
+﻿namespace BE_webapp.Tests
 {
+    using BE.Comparer.Business;
+    using BE.Comparer.Models;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class TextDiffTests
     {
@@ -19,10 +18,10 @@ namespace BE_webapp.Tests
             CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 1);
-            Assert.IsTrue(result.Differences[0].index_from == 2);
-            Assert.IsTrue(result.Differences[0].index_to == 3);
-            Assert.IsTrue(result.Differences[0].index_from_orig == 2);
-            Assert.IsTrue(result.Differences[0].index_to_orig == 3);
+            Assert.IsTrue(result.Differences[0].IndexFrom == 2);
+            Assert.IsTrue(result.Differences[0].IndexTo == 3);
+            Assert.IsTrue(result.Differences[0].IndexFromOrig == 2);
+            Assert.IsTrue(result.Differences[0].IndexToOrig == 3);
         }
 
         [TestMethod]
@@ -36,10 +35,10 @@ namespace BE_webapp.Tests
             CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 1);
-            Assert.IsTrue(result.Differences[0].index_from_orig == 0);
-            Assert.IsTrue(result.Differences[0].index_to_orig == 1);
-            Assert.IsTrue(result.Differences[0].index_from == 0);
-            Assert.IsTrue(result.Differences[0].index_to == 0);
+            Assert.IsTrue(result.Differences[0].IndexFromOrig == 0);
+            Assert.IsTrue(result.Differences[0].IndexToOrig == 1);
+            Assert.IsTrue(result.Differences[0].IndexFrom == 0);
+            Assert.IsTrue(result.Differences[0].IndexTo == 0);
         }
 
         [TestMethod]
@@ -53,10 +52,10 @@ namespace BE_webapp.Tests
             CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 1);
-            Assert.IsTrue(result.Differences[0].index_from_orig == 2);
-            Assert.IsTrue(result.Differences[0].index_to_orig == 2);
-            Assert.IsTrue(result.Differences[0].index_from == 2);
-            Assert.IsTrue(result.Differences[0].index_to == 3);
+            Assert.IsTrue(result.Differences[0].IndexFromOrig == 2);
+            Assert.IsTrue(result.Differences[0].IndexToOrig == 2);
+            Assert.IsTrue(result.Differences[0].IndexFrom == 2);
+            Assert.IsTrue(result.Differences[0].IndexTo == 3);
         }
 
         [TestMethod]
@@ -70,20 +69,20 @@ namespace BE_webapp.Tests
             CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 3);
-            Assert.IsTrue(result.Differences[0].index_from == 2);
-            Assert.IsTrue(result.Differences[0].index_to == 3);
-            Assert.IsTrue(result.Differences[0].index_from_orig == 2);
-            Assert.IsTrue(result.Differences[0].index_to_orig == 3);
+            Assert.IsTrue(result.Differences[0].IndexFrom == 2);
+            Assert.IsTrue(result.Differences[0].IndexTo == 3);
+            Assert.IsTrue(result.Differences[0].IndexFromOrig == 2);
+            Assert.IsTrue(result.Differences[0].IndexToOrig == 3);
 
-            Assert.IsTrue(result.Differences[1].index_from == 5);
-            Assert.IsTrue(result.Differences[1].index_to == 5);
-            Assert.IsTrue(result.Differences[1].index_from_orig == 5);
-            Assert.IsTrue(result.Differences[1].index_to_orig == 6);
+            Assert.IsTrue(result.Differences[1].IndexFrom == 5);
+            Assert.IsTrue(result.Differences[1].IndexTo == 5);
+            Assert.IsTrue(result.Differences[1].IndexFromOrig == 5);
+            Assert.IsTrue(result.Differences[1].IndexToOrig == 6);
 
-            Assert.IsTrue(result.Differences[2].index_from == 7);
-            Assert.IsTrue(result.Differences[2].index_to == 8);
-            Assert.IsTrue(result.Differences[2].index_from_orig == 8);
-            Assert.IsTrue(result.Differences[2].index_to_orig == 8);
+            Assert.IsTrue(result.Differences[2].IndexFrom == 7);
+            Assert.IsTrue(result.Differences[2].IndexTo == 8);
+            Assert.IsTrue(result.Differences[2].IndexFromOrig == 8);
+            Assert.IsTrue(result.Differences[2].IndexToOrig == 8);
         }
 
         [TestMethod]
@@ -97,15 +96,15 @@ namespace BE_webapp.Tests
             CompareResult result = sut.GetTextDifferences(orig, other);
 
             Assert.IsTrue(result.Differences.Count == 2);
-            Assert.IsTrue(result.Differences[0].index_from_orig == 0);
-            Assert.IsTrue(result.Differences[0].index_to_orig == 0);
-            Assert.IsTrue(result.Differences[0].index_from == 0);
-            Assert.IsTrue(result.Differences[0].index_to == 3);
+            Assert.IsTrue(result.Differences[0].IndexFromOrig == 0);
+            Assert.IsTrue(result.Differences[0].IndexToOrig == 0);
+            Assert.IsTrue(result.Differences[0].IndexFrom == 0);
+            Assert.IsTrue(result.Differences[0].IndexTo == 3);
 
-            Assert.IsTrue(result.Differences[1].index_from_orig == 3);
-            Assert.IsTrue(result.Differences[1].index_to_orig == 6);
-            Assert.IsTrue(result.Differences[1].index_from == 6);
-            Assert.IsTrue(result.Differences[1].index_to == 6);
+            Assert.IsTrue(result.Differences[1].IndexFromOrig == 3);
+            Assert.IsTrue(result.Differences[1].IndexToOrig == 6);
+            Assert.IsTrue(result.Differences[1].IndexFrom == 6);
+            Assert.IsTrue(result.Differences[1].IndexTo == 6);
         }
     }
 }

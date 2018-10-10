@@ -1,4 +1,4 @@
-﻿namespace BE.Comparer.Models
+﻿namespace BE.Infrastructure.Model
 {
     using System.Collections.Generic;
 
@@ -6,10 +6,10 @@
     {
         public int MainBible { get; set; }
 
-        public List<int> OtherBibles { get; set; }
+        public List<BibleID> OtherBibles { get; set; }
 
-        public int B { get; set; }
+        public int Book { get; set; }
 
-        public int C { get; set; }
+        public int Chapter { get; set; }
     }
 }

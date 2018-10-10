@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BE.Comparer.Business\BE.Comparer.BLL.csproj" />
+    <ProjectReference Include="..\BE.Comparer\BE.Comparer.csproj" />
     <ProjectReference Include="..\BE.Infrastructure\BE.Infrastructure.csproj" />
   </ItemGroup>
 

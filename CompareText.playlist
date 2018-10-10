@@ -1,1 +1,0 @@
-<Playlist Version="1.0"><Add Test="BE_webapp.Tests.TextDiffTests.TestCompareTextSwap" /><Add Test="BE_webapp.Tests.TextDiffTests.TestCompareTextComplex" /><Add Test="BE_webapp.Tests.TextDiffTests.TestCompareTextModify" /><Add Test="BE_webapp.Tests.TextDiffTests.TestCompareTextAdd" /><Add Test="BE_webapp.Tests.TextDiffTests.TestCompareTextDelete" /></Playlist>

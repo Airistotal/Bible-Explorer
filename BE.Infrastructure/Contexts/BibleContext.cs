@@ -23,6 +23,8 @@
 
         public DbSet<BibleVersion> BibleVersions { get; set; }
 
+        public DbSet<BibleBook> BibleBooks { get; set; }
+
         public override int SaveChanges()
         {
             throw new InvalidOperationException("This context is read-only.");
@@ -33,6 +35,14 @@
             modelBuilder.Entity<BibleVersion>(entity =>
             {
                 entity.ToTable("bible_version_key");
+            });
+
+            modelBuilder.Entity<BibleBook>(entity =>
+            {
+                entity.ToTable("key_english");
+                entity.Property(e => e.Book).HasColumnName("b");
+                entity.Property(e => e.Genre).HasColumnName("g");
+                entity.Property(e => e.Name).HasColumnName("n");
             });
 
             modelBuilder.Entity<ASVBibleVerse>(entity =>
@@ -101,7 +111,8 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured) {
+            if (!optionsBuilder.IsConfigured)
+            {
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\sqlexpress;Database=bibex_db;Trusted_Connection=True;");
             }
         }

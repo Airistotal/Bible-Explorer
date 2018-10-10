@@ -1,6 +1,6 @@
-﻿@using BE_webapp.Models;
+﻿@using BE.Infrastructure.Model;
 
-@model BibleChapterMeta
+@model BibleChapterInfo
 
 @{
     ViewBag.Title = "Bible Comparer";
@@ -14,8 +14,17 @@
 
 <div id="book">
     <div id="spacer"></div>
-    @Html.Partial("BibleTabs", new Tuple<List<bible_version_key>, BibleChapterMeta> (new bibex_dbEntities().bible_version_key.ToList(), Model ))
-    @Html.Partial("BookTabs", new Tuple<List<key_abbreviations_english>, BibleChapterMeta> (new bibex_dbEntities().key_abbreviations_english.ToList(), Model))
+    @Html.PartialAsync(
+        "BibleTabs", 
+        new Tuple<List<BibleVersion>, BibleChapterInfo> (
+            new bibex_dbEntities().bible_version_key.ToList(), 
+            Model))
+
+    @Html.PartialAsync(
+        "BookTabs", 
+        new Tuple<List<BibleVersion>, BibleChapterInfo> (
+            new bibex_dbEntities().key_abbreviations_english.ToList(), 
+            Model))
 
     <div id="page">
         @Html.Action("GetPage", Model)

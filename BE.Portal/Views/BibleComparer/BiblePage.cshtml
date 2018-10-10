@@ -1,7 +1,0 @@
-﻿@using BE_webapp.Models
-
-@model BibleChapter
-
-@Html.Partial("PageHeader", new bibex_dbEntities().usp_GetChapterInfo(Model.B, Model.C))
-
-@Html.Action("ComparedContent", Model);

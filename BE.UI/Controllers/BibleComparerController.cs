@@ -1,48 +1,53 @@
 ﻿namespace BE_webapp.Controllers
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using BE.Comparer.BLL;
     using BE.Comparer.Business;
     using BE.Comparer.Models;
+    using BE.Infrastructure.Model;
     using Microsoft.AspNetCore.Mvc;
 
     public class BibleComparerController : Controller
     {
         // GET: BibleComparer
-        public ActionResult Index(int mBible = 1, List<int> cBibles = null, int B = 1, int C = 1)
+        public ActionResult Index(int mBible = 1, List<BibleID> cBibles = null, int book = 1, int chapter = 1)
         {
-            return View(new BibleChapterMeta() { mBible = mBible, cBibles = cBibles, B = B, C = C });
+            return this.View(new BibleChapterInfo()
+            {
+                MainBible = mBible,
+                OtherBibles = cBibles,
+                Book = book,
+                Chapter = chapter
+            });
         }
 
-        public ActionResult GetPage(BibleChapterMeta bibleChapterMeta)
+        public ActionResult GetPage(BibleChapterInfo bibleChapterInfo)
         {
-            return PartialView("BiblePage", bibleChapterMeta);
+            return this.PartialView("BiblePage", bibleChapterInfo);
         }
 
-        public ActionResult ComparedContent(BibleChapterMeta bibleChapterMeta)
+        public ActionResult ComparedContent(BibleChapterInfo bibleChapterInfo)
         {
-            int mainBibleID = bibleChapterMeta.mBible;
-            int book = bibleChapterMeta.B;
-            int chapter = bibleChapterMeta.C;
+            int mainBibleID = bibleChapterInfo.MainBible;
+            int book = bibleChapterInfo.Book;
+            int chapter = bibleChapterInfo.Chapter;
             IEnumerable<BibleVerse> bibleChapter = new List<BibleVerse>();
 
             List<ComparedBibleVerse> bibleChapterCompared = new List<ComparedBibleVerse>();
             foreach (BibleVerse bibleVerse in bibleChapter)
             {
-                int verse = bibleVerse.v;
+                int verse = bibleVerse.Verse;
                 ComparedBibleVerse compared = new ComparedBibleVerse(new TextDiff(), bibleVerse);
 
-                foreach (int bibleID in bibleChapterMeta.cBibles)
+                foreach (BibleID bibleID in bibleChapterInfo.OtherBibles)
                 {
                     BibleVerse currBibleVerse = new BibleVerse();
-                    compared.AddComparison(currBibleVerse);
+                    compared.AddComparison(bibleID, currBibleVerse);
                 }
 
                 bibleChapterCompared.Add(compared);
             }
 
-            return PartialView("PagedContent", bibleChapterCompared);
+            return this.PartialView("PagedContent", bibleChapterCompared);
         }
     }
 }
