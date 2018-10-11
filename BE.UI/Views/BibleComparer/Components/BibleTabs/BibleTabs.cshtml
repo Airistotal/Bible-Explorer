@@ -1,0 +1,21 @@
+﻿@using BE.Infrastructure.Model;
+
+@model Tuple<IList<BibleVersion>, BibleChapterInfo>
+
+@{
+    BibleChapterInfo currPage = Model.Item2;
+}
+
+<div id="bible_tabs">
+    @foreach (var item in Model.Item1)
+    {
+        <div class="bible_tab">
+            @Html.ActionLink(item.Abbreviation, "Index", new BibleChapterInfo() {
+               MainBible = (BibleID)item.ID,
+               OtherBibles = null,
+               Book = currPage.Book,
+               Chapter = currPage.Chapter
+           })
+        </div>
+    }
+</div>

@@ -1,6 +1,6 @@
 ﻿namespace BE.Comparer.Business
 {
-    using BE.Comparer.Models;
+    using BE.Comparer.Model;
 
     public interface ITextDiff
     {

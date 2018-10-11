@@ -1,6 +1,7 @@
 ﻿namespace BE.Infrastructure.Model
 {
     using System;
+    using System.Collections.Generic;
 
     public class BibleBook
     {
@@ -10,7 +11,11 @@
 
         public string Name { get; set; }
 
-        public int Genre { get; set; }
+        public int GenreID { get; set; }
+
+        public BibleBookGenre Genre { get; set; }
+
+        public List<BibleBookAbbreviation> Abbreviations { get; set; }
 
         public TestamentID Testament
         {

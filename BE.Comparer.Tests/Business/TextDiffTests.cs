@@ -1,7 +1,7 @@
 ﻿namespace BE_webapp.Tests
 {
     using BE.Comparer.Business;
-    using BE.Comparer.Models;
+    using BE.Comparer.Model;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

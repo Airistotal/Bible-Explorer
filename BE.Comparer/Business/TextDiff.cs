@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using BE.Comparer.Models;
+    using BE.Comparer.Model;
 
     public class TextDiff : ITextDiff
     {

@@ -1,6 +1,6 @@
 ﻿namespace BE.UI
 {
-    using BE.Infrastructure.Contexts;
+    using BE.Infrastructure.Context;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;

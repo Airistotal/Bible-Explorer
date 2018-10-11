@@ -1,7 +1,7 @@
 namespace BE.Infrastructure.Integration.Tests
 {
     using System;
-    using BE.Infrastructure.Contexts;
+    using BE.Infrastructure.Context;
     using BE.Infrastructure.Model.SpecificVerses;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 

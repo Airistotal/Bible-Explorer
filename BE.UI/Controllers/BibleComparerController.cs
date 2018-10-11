@@ -2,32 +2,37 @@
 {
     using System.Collections.Generic;
     using BE.Comparer.Business;
-    using BE.Comparer.Models;
+    using BE.Comparer.Model;
+    using BE.Infrastructure.Context;
     using BE.Infrastructure.Model;
     using Microsoft.AspNetCore.Mvc;
 
     public class BibleComparerController : Controller
     {
+        private readonly BibleContext bibleContext;
+
+        public BibleComparerController(BibleContext bibleContext) => this.bibleContext = bibleContext;
+
         // GET: BibleComparer
-        public ActionResult Index(int mBible = 1, List<BibleID> cBibles = null, int book = 1, int chapter = 1)
+        public ActionResult Index(BibleViewInfo bibleInfo = null)
         {
-            return this.View(new BibleChapterInfo()
+            return this.View(bibleInfo ?? new BibleViewInfo()
             {
-                MainBible = mBible,
-                OtherBibles = cBibles,
-                Book = book,
-                Chapter = chapter
+                MainBible = BibleID.ASV,
+                OtherBibles = null,
+                Book = 1,
+                Chapter = 1
             });
         }
 
-        public ActionResult GetPage(BibleChapterInfo bibleChapterInfo)
+        public ActionResult GetPage(BibleViewInfo bibleChapterInfo)
         {
             return this.PartialView("BiblePage", bibleChapterInfo);
         }
 
-        public ActionResult ComparedContent(BibleChapterInfo bibleChapterInfo)
+        public ActionResult ComparedContent(BibleViewInfo bibleChapterInfo)
         {
-            int mainBibleID = bibleChapterInfo.MainBible;
+            BibleID mainBibleID = bibleChapterInfo.MainBible;
             int book = bibleChapterInfo.Book;
             int chapter = bibleChapterInfo.Chapter;
             IEnumerable<BibleVerse> bibleChapter = new List<BibleVerse>();
