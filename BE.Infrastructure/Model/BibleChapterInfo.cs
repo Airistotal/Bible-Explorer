@@ -9,7 +9,5 @@
         public string BookName { get; set; }
 
         public int Chapter { get; set; }
-
-        public string ChapterName { get; set; }
     }
 }

@@ -17,13 +17,13 @@
             this.bibleContext = bibleContext;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(BibleViewInfo bibleChapterInfo)
+        public async Task<IViewComponentResult> InvokeAsync(BibleViewInfo bibleViewInfo)
         {
             var items = await this.GetBibleVersionsAsync();
             return this.View(
                 new Tuple<List<BibleVersion>, BibleViewInfo>(
                     items,
-                    bibleChapterInfo));
+                    bibleViewInfo));
         }
 
         private Task<List<BibleVersion>> GetBibleVersionsAsync()

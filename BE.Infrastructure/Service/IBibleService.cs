@@ -5,6 +5,6 @@
 
     public interface IBibleService
     {
-        IList<BibleVerse> GetChapter(BibleID bibleID, int chapter);
+        IList<BibleVerse> GetBook(BibleID bibleID, int book);
     }
 }

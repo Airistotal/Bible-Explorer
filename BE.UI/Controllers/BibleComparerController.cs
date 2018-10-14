@@ -14,15 +14,18 @@
         public BibleComparerController(BibleContext bibleContext) => this.bibleContext = bibleContext;
 
         // GET: BibleComparer
-        public ActionResult Index(BibleViewInfo bibleInfo = null)
+        public ActionResult Index(BibleViewInfo bibleInfo)
         {
-            return this.View(bibleInfo ?? new BibleViewInfo()
+            if (bibleInfo != null)
             {
-                MainBible = BibleID.ASV,
-                OtherBibles = null,
-                Book = 1,
-                Chapter = 1
-            });
+                bibleInfo.CleanSelf();
+            }
+            else
+            {
+                bibleInfo = new BibleViewInfo();
+            }
+
+            return this.View(bibleInfo);
         }
 
         public ActionResult GetPage(BibleViewInfo bibleChapterInfo)

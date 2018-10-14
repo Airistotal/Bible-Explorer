@@ -4,20 +4,19 @@
 
 @{
     ViewBag.Title = "Bible Comparer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles {
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bible.css")"/>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/bible.css")"/>
 }
-
-<h2>Index</h2>
 
 <div id="book">
     <div id="spacer"></div>
-    <vc:bible-tabs bibleChapterInfo=Model></vc:bible-tabs>
-    <vc:book-tabs bibleChapterInfo=Model></vc:book-tabs>
+    @await Component.InvokeAsync("BibleTabs", new { bibleViewInfo = Model })
+    @await Component.InvokeAsync("BookTabs", new { bibleViewInfo = Model })
 
     <div id="page">
-        @*@Html.Action("GetPage", Model)*@
+        @await Component.InvokeAsync("BiblePage", new { bibleViewInfo = Model })
     </div>
 </div>

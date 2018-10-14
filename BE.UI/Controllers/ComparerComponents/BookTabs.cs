@@ -18,18 +18,19 @@
             this.bibleContext = bibleContext;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(BibleViewInfo bibleChapterInfo)
+        public async Task<IViewComponentResult> InvokeAsync(BibleViewInfo bibleViewInfo)
         {
-            BibleBook book = await this.GetBibleBookAsync(bibleChapterInfo.Book);
+            List<BibleBookAbbreviation> abbrevs = await this.GetBibleAbbrevsAsync();
             return this.View(
                 new Tuple<List<BibleBookAbbreviation>, BibleViewInfo>(
-                    book.Abbreviations,
-                    bibleChapterInfo));
+                    abbrevs,
+                    bibleViewInfo));
         }
 
-        private Task<BibleBook> GetBibleBookAsync(int book)
+        private Task<List<BibleBookAbbreviation>> GetBibleAbbrevsAsync()
         {
-            return this.bibleContext.BibleBooks.Where(e => e.Book == book).FirstOrDefaultAsync();
+            return this.bibleContext.BibleBookAbbreviations.
+                Where(e => e.IsPrimaryAbbreviation).ToListAsync();
         }
     }
 }

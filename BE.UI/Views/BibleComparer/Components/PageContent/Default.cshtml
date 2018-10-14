@@ -1,0 +1,11 @@
+﻿@using BE.Comparer.Model
+
+@model IEnumerable<ComparedBibleVerse>
+
+<div id="page_content">
+    @foreach (var verse in Model)
+    {
+        // Use spans to change font in the middle of the paragraph
+        ViewContext.Writer.Write( " <sup>" + verse.Verse + "</sup>" + verse.Text);
+    }
+</div>

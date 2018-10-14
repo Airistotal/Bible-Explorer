@@ -34,6 +34,10 @@
 
         public DbSet<BibleBook> BibleBooks { get; set; }
 
+        public DbSet<BibleBookAbbreviation> BibleBookAbbreviations { get; set; }
+
+        public DbSet<BibleBookGenre> BibleBookGenres { get; set; }
+
         public override int SaveChanges()
         {
             throw new InvalidOperationException("This context is read-only.");
@@ -49,17 +53,17 @@
             modelBuilder.Entity<BibleBook>(entity =>
             {
                 entity.ToTable("key_english");
-                entity.HasKey(e => e.Book);
+                entity.Property(e => e.Id).HasColumnName("b");
                 entity.Property(e => e.GenreID).HasColumnName("g");
-                entity.Property(e => e.Book).HasColumnName("b");
                 entity.Property(e => e.Name).HasColumnName("n");
-                entity.HasOne(e => e.Genre).WithOne();
-                entity.HasMany(e => e.Abbreviations).WithOne();
+                entity.Property(e => e.T).HasColumnName("t");
+                entity.Ignore(e => e.Testament);
             });
 
             modelBuilder.Entity<BibleBookAbbreviation>(entity =>
             {
                 entity.ToTable("key_abbreviations_english");
+                entity.Property(e => e.Id).HasColumnName("id");
                 entity.Property(e => e.Abbreviation).HasColumnName("a");
                 entity.Property(e => e.Book).HasColumnName("b");
                 entity.Property(e => e.IsPrimaryAbbreviation).HasColumnName("p");
@@ -68,8 +72,7 @@
             modelBuilder.Entity<BibleBookGenre>(entity =>
             {
                 entity.ToTable("key_genre_english");
-                entity.HasKey(e => e.ID);
-                entity.Property(e => e.ID).HasColumnName("g");
+                entity.Property(e => e.Id).HasColumnName("g");
                 entity.Property(e => e.GenreName).HasColumnName("n");
             });
 
@@ -102,7 +105,7 @@
 
             modelBuilder.Entity<KJVBibleVerse>(entity =>
             {
-                entity.ToTable("t_dby");
+                entity.ToTable("t_kjv");
                 entity.Property(e => e.Book).HasColumnName("b");
                 entity.Property(e => e.Chapter).HasColumnName("c");
                 entity.Property(e => e.Verse).HasColumnName("v");
@@ -111,7 +114,7 @@
 
             modelBuilder.Entity<WBTBibleVerse>(entity =>
             {
-                entity.ToTable("t_dby");
+                entity.ToTable("t_wbt");
                 entity.Property(e => e.Book).HasColumnName("b");
                 entity.Property(e => e.Chapter).HasColumnName("c");
                 entity.Property(e => e.Verse).HasColumnName("v");
@@ -120,7 +123,7 @@
 
             modelBuilder.Entity<WEBBibleVerse>(entity =>
             {
-                entity.ToTable("t_dby");
+                entity.ToTable("t_web");
                 entity.Property(e => e.Book).HasColumnName("b");
                 entity.Property(e => e.Chapter).HasColumnName("c");
                 entity.Property(e => e.Verse).HasColumnName("v");
@@ -129,7 +132,7 @@
 
             modelBuilder.Entity<YLTBibleVerse>(entity =>
             {
-                entity.ToTable("t_dby");
+                entity.ToTable("t_ylt");
                 entity.Property(e => e.Book).HasColumnName("b");
                 entity.Property(e => e.Chapter).HasColumnName("c");
                 entity.Property(e => e.Verse).HasColumnName("v");
@@ -141,7 +144,7 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\sqlexpress;Database=bibex_db;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;Database=bibex_db;Trusted_Connection=True;");
             }
         }
     }

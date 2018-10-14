@@ -1,0 +1,6 @@
+﻿@using BE.Infrastructure.Model
+
+@model BibleViewInfo
+
+@await Component.InvokeAsync("PageHeader", new { bibleViewInfo = Model })
+@await Component.InvokeAsync("PageContent", new { bibleViewInfo = Model })

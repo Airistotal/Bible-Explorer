@@ -1,6 +1,8 @@
 ﻿namespace BE.UI
 {
+    using BE.Comparer.Business;
     using BE.Infrastructure.Context;
+    using BE.Infrastructure.Service;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -30,11 +32,12 @@
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var server = @"Server=(localdb)\sqlexpress;Database=bibex_db;Trusted_Connection=True;";
+            var server = @"Server=localhost\sqlexpress;Database=bibex_db;Trusted_Connection=True;";
             services.AddDbContext<BibleContext>(options => options.UseSqlServer(server));
+
+            this.InitializeIOC(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -51,12 +54,19 @@
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            var indexDefault = "{{MainBible=1,OtherBibles=null,Book=1,Chapter=1}}";
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=BibleComparer}/{action=Index}/{id?}");
+                    template: "{controller=BibleComparer}/{action=Index}/{bibleInfo=" + indexDefault + "}");
             });
+        }
+
+        public void InitializeIOC(IServiceCollection services)
+        {
+            services.AddTransient<IBibleService, BibleService>();
+            services.AddTransient<ITextDiff, TextDiff>();
         }
     }
 }
