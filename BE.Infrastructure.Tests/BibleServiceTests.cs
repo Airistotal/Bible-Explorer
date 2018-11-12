@@ -9,13 +9,20 @@
     public class BibleServiceTests : DbInMemoryTest
     {
         [TestMethod]
-        public void When_GetValidChapter_FromValidBible_ReturnsListOfVerses()
+        public async void When_GetValidChapter_FromValidBible_ReturnsListOfVersesAsync()
         {
             // Arrange
+            var info = new BibleViewInfo()
+            {
+                MainBible = BibleID.ASV,
+                Book = 1,
+                Chapter = 1
+            };
+
             var sut = new BibleService(this.BibleContext);
 
             // Act
-            IList<BibleVerse> chapter = sut.GetChapter(BibleID.ASV, 1);
+            IList<BibleVerse> chapter = await sut.GetBookChapterVersesAsync(info);
 
             // Assert
             Assert.IsNotNull(chapter);

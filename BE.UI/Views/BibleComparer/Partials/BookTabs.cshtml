@@ -1,0 +1,26 @@
+﻿@using BE.Infrastructure.Model
+@using BE.Infrastructure.Service
+
+@inject IBibleService bibleService
+
+@model BibleViewInfo
+
+@{ 
+    var bibleBooks = await bibleService.GetBibleBooksAsync();
+}
+
+<div id="book_tabs">
+    <select asp-for="Book" id="books">
+        @foreach (var item in bibleBooks)
+        {
+            @if (item.Book == Model.Book)
+            {
+                <option value="@item.Book" selected>@item.Abbreviation</option>
+            }
+            else
+            {
+                <option value="@item.Book">@item.Abbreviation</option>
+            }
+        }
+    </select>
+</div>

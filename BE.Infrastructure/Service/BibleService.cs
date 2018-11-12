@@ -1,11 +1,12 @@
 ﻿namespace BE.Infrastructure.Service
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using BE.Infrastructure.Context;
     using BE.Infrastructure.Model;
+    using Microsoft.EntityFrameworkCore;
 
     public class BibleService : IBibleService
     {
@@ -16,43 +17,69 @@
             this.bibleContext = bibleContext;
         }
 
-        public IList<BibleVerse> GetBook(BibleID bibleID, int book)
+        public Task<List<BibleVerse>> GetBookChapterVersesAsync(BibleViewInfo bibleViewInfo)
         {
-            IList<BibleVerse> bible = null;
+            return (from verse in this.GetBible(bibleViewInfo.MainBible)
+                   where verse.Book == bibleViewInfo.Book &&
+                         verse.Chapter == bibleViewInfo.Chapter
+                   select verse).ToListAsync();
+        }
+
+        public Task<int> GetLastChapterNumberOfBookAsync(BibleID bibleID, int book)
+        {
+            return (from verse in this.GetBible(bibleID)
+                    where verse.Book == book
+                    select verse.Chapter).MaxAsync();
+        }
+
+        public Task<List<BibleVersion>> GetBibleVersionsAsync()
+        {
+            return this.bibleContext.BibleVersions.ToListAsync();
+        }
+
+        public BibleBook GetBookInfo(int bookNum)
+        {
+            return this.bibleContext.BibleBooks.Find(bookNum);
+        }
+
+        public Task<List<BibleBookAbbreviation>> GetBibleBooksAsync()
+        {
+            return this.bibleContext.BibleBookAbbreviations.
+                Where(e => e.IsPrimaryAbbreviation).ToListAsync();
+        }
+
+        private IQueryable<BibleVerse> GetBible(BibleID bibleID)
+        {
+            IQueryable<BibleVerse> bible = null;
 
             switch (bibleID)
             {
                 case BibleID.ASV:
-                    bible = this.bibleContext.ASV.Cast<BibleVerse>().ToList();
+                    bible = this.bibleContext.ASV.Cast<BibleVerse>();
                     break;
                 case BibleID.BBE:
-                    bible = this.bibleContext.BBE.Cast<BibleVerse>().ToList();
+                    bible = this.bibleContext.BBE.Cast<BibleVerse>();
                     break;
                 case BibleID.DARBY:
-                    bible = this.bibleContext.DARBY.Cast<BibleVerse>().ToList();
+                    bible = this.bibleContext.DARBY.Cast<BibleVerse>();
                     break;
                 case BibleID.KJV:
-                    bible = this.bibleContext.KJV.Cast<BibleVerse>().ToList();
+                    bible = this.bibleContext.KJV.Cast<BibleVerse>();
                     break;
                 case BibleID.WBT:
-                    bible = this.bibleContext.WBT.Cast<BibleVerse>().ToList();
+                    bible = this.bibleContext.WBT.Cast<BibleVerse>();
                     break;
                 case BibleID.WEB:
-                    bible = this.bibleContext.WEB.Cast<BibleVerse>().ToList();
+                    bible = this.bibleContext.WEB.Cast<BibleVerse>();
                     break;
                 case BibleID.YLT:
-                    bible = this.bibleContext.YLT.Cast<BibleVerse>().ToList();
+                    bible = this.bibleContext.YLT.Cast<BibleVerse>();
                     break;
                 case BibleID.INVALID:
                     throw new ArgumentException("Bible ID INVALID in GetChapter");
             }
 
-            return bible.Where(x => x.Book == book).ToList();
-        }
-
-        public BibleBook GetBook(int bookNum)
-        {
-            return this.bibleContext.BibleBooks.Find(bookNum);
+            return bible;
         }
     }
 }

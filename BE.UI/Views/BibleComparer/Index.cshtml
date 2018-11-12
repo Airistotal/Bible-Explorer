@@ -13,10 +13,17 @@
 
 <div id="book">
     <div id="spacer"></div>
-    @await Component.InvokeAsync("BibleTabs", new { bibleViewInfo = Model })
-    @await Component.InvokeAsync("BookTabs", new { bibleViewInfo = Model })
+
+    <form asp-action="Index" asp-controller="BibleComparer">
+        @await Html.PartialAsync("Partials/BibleTabs", Model)
+        @await Html.PartialAsync("Partials/BookTabs", Model)
+        @await Html.PartialAsync("Partials/ChapterTabs", Model)
+
+        <input type="submit" />
+    </form>
 
     <div id="page">
-        @await Component.InvokeAsync("BiblePage", new { bibleViewInfo = Model })
+        @await Component.InvokeAsync("PageHeader", new { bibleViewInfo = Model })
+        @await Component.InvokeAsync("PageContent", new { bibleViewInfo = Model })
     </div>
 </div>

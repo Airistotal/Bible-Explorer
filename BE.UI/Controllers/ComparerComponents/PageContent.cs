@@ -6,11 +6,9 @@
     using System.Threading.Tasks;
     using BE.Comparer.Business;
     using BE.Comparer.Model;
-    using BE.Infrastructure.Context;
     using BE.Infrastructure.Model;
     using BE.Infrastructure.Service;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
 
     public class PageContent : ViewComponent
     {
@@ -25,27 +23,25 @@
 
         public async Task<IViewComponentResult> InvokeAsync(BibleViewInfo bibleViewInfo)
         {
-            IEnumerable<ComparedBibleVerse> verses = this.GetComparedBibleBookAsync(
-                bibleViewInfo.MainBible,
-                bibleViewInfo.OtherBibles,
-                bibleViewInfo.Book);
+            IEnumerable<ComparedBibleVerse> verses = await this.GetComparedBibleChapterAsync(
+                bibleViewInfo);
 
             return this.View(verses);
         }
 
-        private IEnumerable<ComparedBibleVerse> GetComparedBibleBookAsync(
-            BibleID bibleID,
-            IEnumerable<BibleID> otherBibles,
-            int book)
+        private async Task<IEnumerable<ComparedBibleVerse>> GetComparedBibleChapterAsync(
+            BibleViewInfo bibleViewInfo)
         {
+            var otherBibles = bibleViewInfo.OtherBibles;
+
             Comparison<BibleVerse> comparison = new Comparison<BibleVerse>((x, y) => x.Verse.CompareTo(y.Verse));
-            List<BibleVerse> mainBook = this.bibleService.GetBook(bibleID, book).ToList();
+            List<BibleVerse> mainBook = await this.bibleService.GetBookChapterVersesAsync(bibleViewInfo);
             mainBook.Sort(comparison);
 
             Dictionary<BibleID, List<BibleVerse>> otherBooks = new Dictionary<BibleID, List<BibleVerse>>();
             foreach (var otherBible in otherBibles)
             {
-                List<BibleVerse> otherBook = this.bibleService.GetBook(otherBible, book).ToList();
+                List<BibleVerse> otherBook = await this.bibleService.GetBookChapterVersesAsync(bibleViewInfo);
                 otherBook.Sort(comparison);
                 otherBooks.Add(otherBible, otherBook);
             }

@@ -1,0 +1,20 @@
+﻿@using BE.Infrastructure.Model
+@using System.Linq;
+@using BE.Infrastructure.Service
+
+@model BibleViewInfo
+
+@inject IBibleService bibleService
+
+@{ 
+    var lastChapter = await bibleService.GetLastChapterNumberOfBookAsync(Model.MainBible, Model.Book);
+}
+
+<div id="chapter_tabs">
+    <select asp-for="Chapter" id="chapter">
+        @foreach (var x in Enumerable.Range(1, lastChapter))
+        {
+            <option value="@x">@x</option>
+        }
+    </select>
+</div>
