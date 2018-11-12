@@ -1,0 +1,3 @@
+[submodule "Build/Database"]
+	path = Build/Database
+	url = https://github.com/Airistotal/bible_databases.git

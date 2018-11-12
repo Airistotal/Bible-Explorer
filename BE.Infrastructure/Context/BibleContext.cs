@@ -144,7 +144,7 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;Database=bibex_db;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;Database=BE;Trusted_Connection=True;");
             }
         }
     }
