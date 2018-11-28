@@ -22,7 +22,7 @@
             var sut = new BibleService(this.BibleContext);
 
             // Act
-            IList<BibleVerse> chapter = await sut.GetBookChapterVersesAsync(info);
+            IList<BibleVerse> chapter = await sut.GetBookChapterVersesAsync(info.MainBible, info.Book, info.Chapter);
 
             // Assert
             Assert.IsNotNull(chapter);

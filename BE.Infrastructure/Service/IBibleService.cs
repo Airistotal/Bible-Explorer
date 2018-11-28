@@ -6,7 +6,7 @@
 
     public interface IBibleService
     {
-        Task<List<BibleVerse>> GetBookChapterVersesAsync(BibleViewInfo bibleViewInfo);
+        Task<List<BibleVerse>> GetBookChapterVersesAsync(BibleID bibleID, int book, int chapter);
 
         Task<int> GetLastChapterNumberOfBookAsync(BibleID bibleID, int book);
 

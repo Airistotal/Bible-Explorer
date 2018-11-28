@@ -14,13 +14,7 @@
 <div id="book">
     <div id="spacer"></div>
 
-    <form asp-action="Index" asp-controller="BibleComparer">
-        @await Html.PartialAsync("Partials/BibleTabs", Model)
-        @await Html.PartialAsync("Partials/BookTabs", Model)
-        @await Html.PartialAsync("Partials/ChapterTabs", Model)
-
-        <input type="submit" />
-    </form>
+    @await Html.PartialAsync("Partials/BibleComparerNavigation", Model)
 
     <div id="page">
         @await Component.InvokeAsync("PageHeader", new { bibleViewInfo = Model })

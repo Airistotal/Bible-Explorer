@@ -7,14 +7,10 @@
 
     public class ComparedBibleVerse : BibleVerse
     {
-        private readonly ITextDiff txtDiff;
-
-        private Dictionary<BibleID, Tuple<BibleVerse, CompareResult>> comparedVerses;
-
         public ComparedBibleVerse(ITextDiff txtDiff)
         {
-            this.comparedVerses = new Dictionary<BibleID, Tuple<BibleVerse, CompareResult>>();
-            this.txtDiff = txtDiff;
+            this.ComparedVerses = new Dictionary<BibleID, Tuple<BibleVerse, CompareResult>>();
+            this.TxtDiff = txtDiff;
         }
 
         public ComparedBibleVerse(ITextDiff txtDiff, BibleVerse verse)
@@ -27,15 +23,28 @@
             this.Text = verse.Text;
         }
 
+        public ITextDiff TxtDiff { get; }
+
+        public Dictionary<BibleID, Tuple<BibleVerse, CompareResult>> ComparedVerses { get; }
+
         public void AddComparison(BibleID bibleID, BibleVerse verse)
         {
-            CompareResult diff = this.txtDiff.GetTextDifferences(this.Text, verse.Text);
-            this.comparedVerses.Add(bibleID, new Tuple<BibleVerse, CompareResult>(verse, diff));
+            CompareResult diff = this.TxtDiff.GetTextDifferences(this.Text, verse.Text);
+            this.ComparedVerses.Add(bibleID, new Tuple<BibleVerse, CompareResult>(verse, diff));
         }
 
-        public Tuple<BibleVerse, CompareResult> GetComparison(BibleID bible_id)
+        public string GetDifference(BibleID bibleID, int index)
         {
-            return this.comparedVerses[bible_id];
+            var compareResult = this.ComparedVerses[bibleID].Item2.GetDifference(index);
+
+            if (compareResult != null)
+            {
+                return this.Text.Substring(compareResult.Item1, compareResult.Item2 - compareResult.Item1);
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
     }
 }

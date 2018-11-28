@@ -3,9 +3,39 @@
 @model IEnumerable<ComparedBibleVerse>
 
 <div id="page_content">
-    @foreach (var verse in Model)
-    {
-        // Use spans to change font in the middle of the paragraph
-        ViewContext.Writer.Write( " <sup>" + verse.Verse + "</sup>" + verse.Text);
+    @{
+        foreach (var verse in Model)
+        {
+            ViewContext.Writer.Write($"<sup>{verse.Verse.ToString()}</sup>");
+
+            var words = verse.Text.Trim().Split(' ');
+
+            for(var i = 0; i < words.Length; i++)
+            {
+                var word = words[i];
+
+                List<string> word_comparisons = new List<string>();
+                foreach (var key in verse.ComparedVerses.Keys)
+                {
+                    var differenceText = verse.GetDifference(key, i);
+
+                    if (!string.IsNullOrWhiteSpace(differenceText))
+                    {
+                        word_comparisons.Add(differenceText);
+                    }
+                }
+
+                if (word_comparisons.Count > 0)
+                {
+                    ViewContext.Writer.Write($"<span style='display: inline'>[{word}]<span class='tooltip'>{word_comparisons[0]}</span></span> ");
+                }
+                else
+                {
+                    // Use spans to change font in the middle of the paragraph
+                    ViewContext.Writer.Write(word + " ");
+                }
+            }
+        }
+
     }
 </div>

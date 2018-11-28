@@ -1,8 +1,5 @@
 ﻿namespace BE_webapp.Controllers
 {
-    using System.Collections.Generic;
-    using BE.Comparer.Business;
-    using BE.Comparer.Model;
     using BE.Infrastructure.Context;
     using BE.Infrastructure.Model;
     using Microsoft.AspNetCore.Mvc;
@@ -21,18 +18,19 @@
 
         // GET: BibleComparer
         [HttpPost]
-        public ActionResult Index(BibleViewInfo bibleInfo)
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(BibleViewInfo bibleViewInfo)
         {
-            if (bibleInfo != null)
+            if (bibleViewInfo != null)
             {
-                bibleInfo.CleanSelf();
+                bibleViewInfo.CleanSelf();
             }
             else
             {
-                bibleInfo = new BibleViewInfo();
+                bibleViewInfo = new BibleViewInfo();
             }
 
-            return this.View(bibleInfo);
+            return this.View(bibleViewInfo);
         }
     }
 }

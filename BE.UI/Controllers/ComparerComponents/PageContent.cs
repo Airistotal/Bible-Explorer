@@ -35,13 +35,21 @@
             var otherBibles = bibleViewInfo.OtherBibles;
 
             Comparison<BibleVerse> comparison = new Comparison<BibleVerse>((x, y) => x.Verse.CompareTo(y.Verse));
-            List<BibleVerse> mainBook = await this.bibleService.GetBookChapterVersesAsync(bibleViewInfo);
+            List<BibleVerse> mainBook = await this.bibleService.GetBookChapterVersesAsync(
+                bibleViewInfo.MainBible,
+                bibleViewInfo.Book,
+                bibleViewInfo.Chapter);
+
             mainBook.Sort(comparison);
 
             Dictionary<BibleID, List<BibleVerse>> otherBooks = new Dictionary<BibleID, List<BibleVerse>>();
             foreach (var otherBible in otherBibles)
             {
-                List<BibleVerse> otherBook = await this.bibleService.GetBookChapterVersesAsync(bibleViewInfo);
+                List<BibleVerse> otherBook = await this.bibleService.GetBookChapterVersesAsync(
+                    otherBible,
+                    bibleViewInfo.Book,
+                    bibleViewInfo.Chapter);
+
                 otherBook.Sort(comparison);
                 otherBooks.Add(otherBible, otherBook);
             }

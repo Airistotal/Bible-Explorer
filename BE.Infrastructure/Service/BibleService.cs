@@ -17,11 +17,11 @@
             this.bibleContext = bibleContext;
         }
 
-        public Task<List<BibleVerse>> GetBookChapterVersesAsync(BibleViewInfo bibleViewInfo)
+        public Task<List<BibleVerse>> GetBookChapterVersesAsync(BibleID bibleID, int book, int chapter)
         {
-            return (from verse in this.GetBible(bibleViewInfo.MainBible)
-                   where verse.Book == bibleViewInfo.Book &&
-                         verse.Chapter == bibleViewInfo.Chapter
+            return (from verse in this.GetBible(bibleID)
+                   where verse.Book == book &&
+                         verse.Chapter == chapter
                    select verse).ToListAsync();
         }
 
