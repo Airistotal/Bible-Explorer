@@ -21,7 +21,7 @@
         public Tuple<int, int> GetDifference(int index)
         {
             return this.Differences.
-                Where(x => index >= x.IndexFromOrig && index <= x.IndexToOrig).
+                Where(x => index >= x.IndexFromOrig && index < x.IndexToOrig).
                 Select(x => new Tuple<int, int>(x.IndexFrom, x.IndexTo)).
                 DefaultIfEmpty(null).FirstOrDefault();
         }

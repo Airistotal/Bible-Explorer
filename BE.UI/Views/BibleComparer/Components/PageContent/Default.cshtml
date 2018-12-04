@@ -27,7 +27,10 @@
 
                 if (word_comparisons.Count > 0)
                 {
-                    ViewContext.Writer.Write($"<span style='display: inline'>[{word}]<span class='tooltip'>{word_comparisons[0]}</span></span> ");
+                    ViewContext.Writer.Write(
+                        $"<span class='tooltip' style='display: inline'>[{word}]" +
+                            $"<span class='tooltiptext'>{word_comparisons[0]}</span>" +
+                        $"</span> ");
                 }
                 else
                 {

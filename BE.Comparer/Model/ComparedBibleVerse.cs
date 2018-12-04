@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using BE.Comparer.Business;
     using BE.Infrastructure.Model;
 
@@ -35,11 +36,17 @@
 
         public string GetDifference(BibleID bibleID, int index)
         {
-            var compareResult = this.ComparedVerses[bibleID].Item2.GetDifference(index);
+            var comparedVerse = this.ComparedVerses[bibleID];
+            var compareResult = comparedVerse.Item2.GetDifference(index);
 
             if (compareResult != null)
             {
-                return this.Text.Substring(compareResult.Item1, compareResult.Item2 - compareResult.Item1);
+                var comparedText = comparedVerse.Item1.Text.Trim().Split(' ');
+                var textDifferences = comparedText.
+                                        Skip(compareResult.Item1).
+                                        Take(compareResult.Item2 - compareResult.Item1);
+
+                return string.Join(' ', textDifferences);
             }
             else
             {
