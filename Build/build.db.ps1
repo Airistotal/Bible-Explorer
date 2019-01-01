@@ -1,6 +1,6 @@
 [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.SMO') | out-null
 
-$srv = new-Object Microsoft.SqlServer.Management.Smo.Server("(local)\sqlexpress")
+$srv = new-Object Microsoft.SqlServer.Management.Smo.Server("localhost")
 
 $dbExists = $FALSE
 foreach ($currDb in $srv.databases) {
@@ -18,12 +18,6 @@ if ($dbExists -eq $FALSE) {
 
 Get-ChildItem ".\Database\tsql" -Filter *.sql | 
 Foreach-Object {
-  $content = (Get-Content $_.FullName) -join [Environment]::NewLine
-
-  Write-Host $content
-
-  $Batch = New-Object -TypeName:Collections.Specialized.StringCollection
-  $Batch.AddRange($content)
-
-  $db.ExecuteWithResults($Batch)
+  Write-Host "Running script" $_.Name
+  Invoke-Sqlcmd -Inputfile $_.FullName -ServerInstance localhost -Database BE
 }
