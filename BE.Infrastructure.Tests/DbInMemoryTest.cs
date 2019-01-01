@@ -16,7 +16,7 @@
 
         private void ConfigureContext()
         {
-            var dbname = "bibex_db_" + Guid.NewGuid();
+            var dbname = "BE_" + Guid.NewGuid();
             var options = new DbContextOptionsBuilder<BibleContext>()
                 .UseInMemoryDatabase(databaseName: dbname)
                 .Options;

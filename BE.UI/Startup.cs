@@ -32,7 +32,7 @@
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var server = @"Server=localhost\sqlexpress;Database=bibex_db;Trusted_Connection=True;";
+            var server = @"Server=localhost;Database=BE;Trusted_Connection=True;";
             services.AddDbContext<BibleContext>(options => options.UseSqlServer(server));
 
             this.InitializeIOC(services);
