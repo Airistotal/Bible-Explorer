@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using BE.Comparer.Business;
     using BE.Comparer.Model;
@@ -32,8 +31,6 @@
         private async Task<IEnumerable<ComparedBibleVerse>> GetComparedBibleChapterAsync(
             BibleViewInfo bibleViewInfo)
         {
-            var otherBibles = bibleViewInfo.OtherBibles;
-
             Comparison<BibleVerse> comparison = new Comparison<BibleVerse>((x, y) => x.Verse.CompareTo(y.Verse));
             List<BibleVerse> mainBook = await this.bibleService.GetBookChapterVersesAsync(
                 bibleViewInfo.MainBible,
@@ -42,16 +39,15 @@
 
             mainBook.Sort(comparison);
 
-            Dictionary<BibleID, List<BibleVerse>> otherBooks = new Dictionary<BibleID, List<BibleVerse>>();
-            foreach (var otherBible in otherBibles)
+            List<BibleVerse> otherBook = null;
+            if (bibleViewInfo.CompareBible != BibleID.NONE && bibleViewInfo.CompareBible != BibleID.INVALID)
             {
-                List<BibleVerse> otherBook = await this.bibleService.GetBookChapterVersesAsync(
-                    otherBible,
+                otherBook = await this.bibleService.GetBookChapterVersesAsync(
+                    bibleViewInfo.CompareBible,
                     bibleViewInfo.Book,
                     bibleViewInfo.Chapter);
 
                 otherBook.Sort(comparison);
-                otherBooks.Add(otherBible, otherBook);
             }
 
             List<ComparedBibleVerse> list = new List<ComparedBibleVerse>();
@@ -61,10 +57,10 @@
                 var index = mainBook.IndexOf(verse);
                 var comparedBibleVerse = new ComparedBibleVerse(this.textDiff, verse);
 
-                foreach (var otherBook in otherBooks)
+                if (otherBook != null)
                 {
-                    var otherBibleID = otherBook.Key;
-                    var otherBibleBook = otherBook.Value;
+                    var otherBibleID = bibleViewInfo.CompareBible;
+                    var otherBibleBook = otherBook;
                     var otherVerse = otherBibleBook[index];
 
                     comparedBibleVerse.AddComparison(otherBibleID, otherVerse);

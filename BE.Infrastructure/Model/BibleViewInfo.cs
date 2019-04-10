@@ -1,20 +1,18 @@
 ﻿namespace BE.Infrastructure.Model
 {
-    using System.Collections.Generic;
-
     public class BibleViewInfo
     {
         public BibleViewInfo()
         {
             this.MainBible = BibleID.ASV;
-            this.OtherBibles = new List<BibleID>();
+            this.CompareBible = BibleID.NONE;
             this.Book = 1;
             this.Chapter = 1;
         }
 
         public BibleID MainBible { get; set; }
 
-        public List<BibleID> OtherBibles { get; set; }
+        public BibleID CompareBible { get; set; }
 
         public int Book { get; set; }
 
@@ -35,9 +33,9 @@
                 changed = true;
             }
 
-            if (this.OtherBibles == null)
+            if (this.CompareBible == BibleID.INVALID)
             {
-                this.OtherBibles = new List<BibleID>();
+                this.CompareBible = BibleID.NONE;
                 changed = true;
             }
 

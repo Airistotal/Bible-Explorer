@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/Bible.css",
+    "inputFile": "wwwroot/css/Bible.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Site.css",
+    "inputFile": "wwwroot/css/Site.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/PastelPalette.css",
+    "inputFile": "wwwroot/css/PastelPalette.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/BEDropDown.css",
+    "inputFile": "wwwroot/css/BEDropDown.scss"
+  }
+]

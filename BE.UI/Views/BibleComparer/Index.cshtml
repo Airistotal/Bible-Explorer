@@ -8,13 +8,14 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/bible.css")"/>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/Bible.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/BEDropDown.css")" />
 }
 
 <div id="book">
-    <div id="spacer"></div>
-
-    @await Html.PartialAsync("Partials/BibleComparerNavigation", Model)
+    <div id="search_container">
+        @await Html.PartialAsync("Partials/BibleComparerNavigation", Model)
+    </div>
 
     <div id="page">
         @await Component.InvokeAsync("PageHeader", new { bibleViewInfo = Model })

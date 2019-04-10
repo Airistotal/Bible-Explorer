@@ -24,7 +24,8 @@
                 Book = book.Id,
                 BookGenre = book.Genre.GenreName,
                 BookName = book.Name,
-                Chapter = bibleViewInfo.Chapter
+                Chapter = bibleViewInfo.Chapter,
+                TestamentID = book.Testament
             });
         }
 

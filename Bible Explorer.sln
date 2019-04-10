@@ -15,7 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BE.Comparer", "BE.Comparer\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BE.Comparer.Tests", "BE.Comparer.Tests\BE.Comparer.Tests.csproj", "{4C6F0CC1-26E8-4316-8F7B-4D645BE10F5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BE.Infrastructure.Tests", "BE.Infrastructure.Tests\BE.Infrastructure.Tests.csproj", "{5BEB6EEC-92C8-4EF6-8549-0EB3B5CCC9C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BE.Infrastructure.Tests", "BE.Infrastructure.Tests\BE.Infrastructure.Tests.csproj", "{5BEB6EEC-92C8-4EF6-8549-0EB3B5CCC9C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitFiles", "GitFiles", "{EDE99350-2C78-4AF9-BA5E-BF988FBBF49A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		Licenses.txt = Licenses.txt
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

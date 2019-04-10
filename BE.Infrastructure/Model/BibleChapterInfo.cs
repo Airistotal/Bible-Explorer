@@ -9,5 +9,7 @@
         public string BookName { get; set; }
 
         public int Chapter { get; set; }
+
+        public TestamentID TestamentID { get; set; }
     }
 }

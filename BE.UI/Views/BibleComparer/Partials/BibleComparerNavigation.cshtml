@@ -10,32 +10,41 @@
     var LastChapter = await bibleService.GetLastChapterNumberOfBookAsync(Model.MainBible, Model.Book);
     var BibleBooks = await bibleService.GetBibleBooksAsync();
     var BibleIDs = (IEnumerable<BibleID>)Enum.GetValues(typeof(BibleID));
-    var ValidBibleIDs = BibleIDs.
-                            Where(x => x != BibleID.INVALID).
-                            Select(y => new { ID = (int)y, Label = y });
+    var ValidBibleIDs = BibleIDs.Where(x => x != BibleID.INVALID).
+                                 Select(y => new { ID = (int)y, Label = y });
 }
 
 <form asp-action="Index" asp-controller="BibleComparer">
-    @Html.DropDownListFor(
-        m => m.Chapter,
-        new SelectList(Enumerable.Range(1, LastChapter), Model.Chapter),
-        new { @class="chapter_tabs" }
-    )
+    <div class="BEDropDown">
+        @Html.DropDownListFor(
+            m => m.MainBible,
+            new SelectList(ValidBibleIDs, "ID", "Label", Model.MainBible)
+        )
+    </div>
 
-    @Html.DropDownListFor(
-        m => m.MainBible,
-        new SelectList(ValidBibleIDs, "ID", "Label", Model.MainBible)
-    )
+    <div class="BEDropDown">
+        @Html.DropDownListFor(
+            m => m.CompareBible,
+            new SelectList(ValidBibleIDs, "ID", "Label", Model.CompareBible)
+        )
+    </div>
 
-    @Html.ListBoxFor(
-        m => m.OtherBibles,
-        new SelectList(ValidBibleIDs, "ID", "Label", Model.OtherBibles)
-    )
+    <div class="BEDropDown">
+        @Html.DropDownListFor(
+            m => m.Book,
+            new SelectList(BibleBooks, "Book", "Abbreviation", Model.Book)
+        )
+    </div>
 
-    @Html.DropDownListFor(
-        m => m.Book,
-        new SelectList(BibleBooks, "Book", "Abbreviation", Model.Book)
-    )
+    <div class="BEDropDown">
+        @Html.DropDownListFor(
+            m => m.Chapter,
+            new SelectList(Enumerable.Range(1, LastChapter), Model.Chapter),
+            new { @class="chapter_tabs" }
+        )
+    </div>
 
     <input type="submit" />
 </form>
+
+<script type="text/javascript" src="~/js/BEDropDown.js"></script>

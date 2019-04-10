@@ -1,56 +1,70 @@
-﻿body {
-}
+﻿sup {
+  vertical-align: super;
+  line-height: 0.5em; }
 
 #book {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-}
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%; }
 
-#spacer {
-    display: inline-block;
-    height: 70px;
-    width: 70px;
-}
+#search_container {
+  margin: 70px 70px 70px 70px; }
 
-#bible_tabs {
-    position: relative;
-    display: inline-block;
-    height: 70px;
-    margin: auto;
-}
+#page_header_main {
+  font-size: xx-large;
+  margin: 0 0 15px 0; }
 
-.bible_tab {
-    position: relative;
-    display: inline-block;
-    float: left;
-    height: 70px;
-    width: 70px;
-}
-
-#book_tabs {
-    position: relative;
-    display: block;
-    width: 70px;
-}
-
-.book_tab {
-    position: relative;
-    display: block;
-    float: left;
-    height: 70px;
-    width: 70px;
-}
+#page_header_info {
+  font-size: small;
+  margin: 0 0 20px 0; }
 
 #page {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding-left: 70px;
-    padding-right: 70px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
+  position: absolute;
+  display: block;
+  padding: 50px 50px 50px 50px;
+  margin: 0 70px 70px 70px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+#page_content {
+  line-height: 1.5em;
+  font-size: 1.1em;
+  display: block;
+  position: relative; }
+
+/* CSS for text difference display */
+.content {
+  position: relative;
+  display: inline;
+  width: 100%;
+  z-index: 0; }
+
+.overlay {
+  display: inline;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  color: transparent; }
+
+.border1 {
+  display: inline;
+  border: solid 1px red;
+  box-sizing: border-box;
+  background-color: rgba(255, 20, 20, 0.1);
+  padding: 2px 0 2px 0; }
+
+.border2 {
+  display: inline;
+  border: solid 1px green;
+  box-sizing: border-box;
+  background-color: rgba(20, 255, 20, 0.1); }
+
+.spacer {
+  position: relative;
+  display: inline;
+  white-space: nowrap;
+  padding-right: 1px;
+  left: 0; }

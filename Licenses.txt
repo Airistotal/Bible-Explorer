@@ -1,0 +1,4 @@
+Licenses:
+
+BE.UI/wwwroot/favicon.ico
+http://www.freestockphotos.biz/stockphoto/16546

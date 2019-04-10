@@ -1,33 +1,24 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
-for details on configuring this project to bundle and minify static web assets. */
-body {
-    padding: 0 0 0 0;
-}
+﻿body {
+  padding: 0 0 0 0;
+  color: #000000;
+  background-color: #ffffff; }
 
-/* Tooltip container */
+/* Tooltip */
 .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
-
-    /* Tooltip text */
-    .tooltip .tooltiptext {
-        visibility: hidden;
-        background-color: black;
-        color: #fff;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 6px;
-        /* Position the tooltip text - see examples below! */
-        position: absolute;
-        z-index: 1;
-        left:5px;
-        top: -17px;
-        padding: 0 5px 0 5px;
-    }
-
-    /* Show the tooltip text when you mouse over the tooltip container */
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-    }
+  position: relative;
+  display: inline-block; }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    text-align: center;
+    padding: 5px 0;
+    color: #191919;
+    background-color: #808080;
+    border: 1px solid #0094ff;
+    /* Position the tooltip text - see examples below! */
+    display: inline-table;
+    position: absolute;
+    z-index: 1;
+    top: -30px;
+    padding: 0 5px 0 5px; }
+  .tooltip:hover .tooltiptext {
+    visibility: visible; }
