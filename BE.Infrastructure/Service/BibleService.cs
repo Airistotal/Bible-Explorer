@@ -44,8 +44,11 @@
 
         public Task<List<BibleBookAbbreviation>> GetBibleBooksAsync()
         {
-            return this.bibleContext.BibleBookAbbreviations.
-                Where(e => e.IsPrimaryAbbreviation).ToListAsync();
+            return (from bookAbbrev in this.bibleContext.BibleBookAbbreviations
+                    where bookAbbrev.IsPrimaryAbbreviation
+                    orderby bookAbbrev.Abbreviation.Length ascending
+                    group bookAbbrev by bookAbbrev.Book into grp
+                    select grp.First()).ToListAsync();
         }
 
         private IQueryable<BibleVerse> GetBible(BibleID bibleID)

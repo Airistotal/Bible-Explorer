@@ -5,7 +5,12 @@
 /* The container must be positioned relative: */
 .BEDropDown {
     position: relative;
+    display: inline-block;
     font-family: Arial;
+    width: 65px;
+    height:65px;
+    margin: 5px;
+    cursor: pointer;
 
     select {
         display: none; /*hide original SELECT element: */
@@ -17,46 +22,45 @@
     display: none;
 }
 
+.select-show > div {
+    display: inline-block;
+    opacity: 1;
+}
+
+/* Styles the selected item*/
 .select-selected {
     background-color: DodgerBlue;
-
-    /* Style the arrow inside the select element: */
-    &:after {
-        position: absolute;
-        content: "";
-        top: 14px;
-        right: 10px;
-        width: 0;
-        height: 0;
-        border: 6px solid transparent;
-        border-color: #fff transparent transparent transparent;
-    }
-
-    .select-arrow-active:after {
-        border-color: transparent transparent #fff transparent;
-        top: 7px;
-    }
+    height: 65px;
+    width: 65px;
+    line-height: 65px;
+    border-radius: 35px;
+    text-align: center;
+    color: #ffffff;
 }
 
 /* Style items (options): */
-.select-items {
+.BEDropDown-select-items {
     position: absolute;
     background-color: DodgerBlue;
+    margin-top: 10px;
     top: 100%;
-    left: 0;
-    right: 0;
     z-index: 99;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
 
-    /* style the items (options), including the selected item: */
-    div, .select-selected {
+    /* style the items (options): */
+    div {
         color: #ffffff;
-        padding: 8px 16px;
+        padding: 15px 20px;
         border: 1px solid transparent;
-        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+        border-color: transparent rgba(0, 0, 0, 0.1) transparent transparent;
         cursor: pointer;
+        display: inline-block;
     }
 
     div:hover, .same-as-selected {
         background-color: rgba(0, 0, 0, 0.1);
+        border: none;
     }
 }

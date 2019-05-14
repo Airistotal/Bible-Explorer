@@ -5,6 +5,7 @@ Requirements
 - Visual Studio
 - Enable powershell script execution
 - Web Compiler Visual Studio Extension for scss files
+- Node.js and the npm cmd line tool
 
 Install
 - git clone --recurse-submodules

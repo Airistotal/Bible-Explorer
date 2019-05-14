@@ -30,49 +30,9 @@ var BEDropDown = /** @class */ (function () {
             }
             $(_this.optionContainer).hide();
         };
-        this.enableHorizontalScolling = function () {
-            _this.horizontalScroll = true;
-            if (window.addEventListener) // older FF
-                window.addEventListener('DOMMouseScroll', preventDefault, false);
-            window.onwheel = preventDefault; // modern standard
-            window.onmousewheel = preventDefault; // older browsers, IE
-            window.ontouchmove = preventDefault; // mobile
-            document.onkeydown = preventDefaultForScrollKeys;
-            $(_this.optionContainer).on("DOMMouseScroll mousewheel", _this.scrollHorizontally);
-        };
-        this.disableHoriztonalScrolling = function () {
-            _this.horizontalScroll = false;
-            if (window.addEventListener) // older FF
-                window.addEventListener('DOMMouseScroll', null, false);
-            window.onwheel = null; // modern standard
-            window.onmousewheel = null; // older browsers, IE
-            window.ontouchmove = null; // mobile
-            document.onkeydown = null;
-            $(_this.optionContainer).on("DOMMouseScroll mousewheel", null);
-        };
-        this.scrollHorizontally = function (e) {
-            var origEvent = e.originalEvent;
-            var wheelDelta = 0;
-            try {
-                wheelDelta = origEvent.wheelDelta;
-            }
-            catch (e) {
-                wheelDelta = origEvent.detail;
-            }
-            if (wheelDelta > 0) {
-                //scroll up
-                _this.optionContainer.scrollLeft += 30;
-            }
-            else {
-                //scroll down
-                _this.optionContainer.scrollLeft += -30;
-            }
-            return false;
-        };
         if (!context.classList.contains("BEDropDown")) {
             throw new Error("This element isn't a BEDropDown!");
         }
-        this.horizontalScroll = false;
         this.rootElement = context;
         this.originalSelect = $(this.rootElement).children("select")[0];
         this.initSelected();
@@ -94,8 +54,6 @@ var BEDropDown = /** @class */ (function () {
     };
     BEDropDown.prototype.initOptions = function () {
         this.optionContainer = document.createElement("div");
-        this.optionContainer.onmouseenter = this.enableHorizontalScolling;
-        this.optionContainer.onmouseleave = this.disableHoriztonalScrolling;
         $(this.optionContainer).addClass("BEDropDown-select-items select-hide");
         this.rootElement.append(this.optionContainer);
         var options = this.originalSelect.options;
@@ -124,7 +82,6 @@ var dropdowns = new Array();
 $(document).ready(function () {
     // Initialize custom dropdowns
     var selectContainers = $(".BEDropDown");
-    var horizontalScroll = false;
     for (var i = 0; i < selectContainers.length; i++) {
         dropdowns.push(new BEDropDown(selectContainers[i]));
     }
@@ -134,9 +91,16 @@ $(document).ready(function () {
     });
     $(document).on("click", function () { closeAllSelect(null); });
     $(".BEDropDown-select-items").mouseenter(function () {
+        if (window.addEventListener) // older FF
+            window.addEventListener('DOMMouseScroll', preventDefault, false);
+        window.onwheel = preventDefault; // modern standard
+        window.onmousewheel = preventDefault; // older browsers, IE
+        window.ontouchmove = preventDefault; // mobile
+        document.onkeydown = preventDefaultForScrollKeys;
     });
-    $(".BEDropDown-select-items").mouseleave(function () {
-    });
+    window.onscroll = function (e) {
+        e.stopPropagation();
+    };
 });
 function closeAllSelect(elmnt) {
     /* A function that will close all select boxes in the document,
@@ -147,13 +111,13 @@ function closeAllSelect(elmnt) {
         }
     });
 }
+var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 function preventDefault(e) {
     if (e.preventDefault)
         e.preventDefault();
     e.returnValue = false;
 }
 function preventDefaultForScrollKeys(e) {
-    var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
     if (keys[e.keyCode]) {
         preventDefault(e);
         return false;

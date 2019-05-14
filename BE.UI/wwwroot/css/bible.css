@@ -9,7 +9,9 @@
   height: 100%; }
 
 #search_container {
-  margin: 70px 70px 70px 70px; }
+  position: relative;
+  display: block;
+  margin: 70px; }
 
 #page_header_main {
   font-size: xx-large;
@@ -22,7 +24,7 @@
 #page {
   position: absolute;
   display: block;
-  padding: 50px 50px 50px 50px;
+  padding: 50px;
   margin: 0 70px 70px 70px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -68,3 +70,10 @@
   white-space: nowrap;
   padding-right: 1px;
   left: 0; }
+
+@media only screen and (max-width: 600px) {
+  #search_container {
+    margin: 20px; }
+  #page {
+    padding: 30px;
+    margin: 0 20px 20px 20px; } }

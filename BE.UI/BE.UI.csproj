@@ -2,10 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="scripts\BEDropDown.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +30,10 @@
   <ItemGroup>
     <ProjectReference Include="..\BE.Comparer\BE.Comparer.csproj" />
     <ProjectReference Include="..\BE.Infrastructure\BE.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="scripts\BEDropDown.ts" />
   </ItemGroup>
 
 </Project>
