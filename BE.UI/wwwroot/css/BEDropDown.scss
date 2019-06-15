@@ -2,6 +2,8 @@
     Custom dropdown based off of: https://www.w3schools.com/howto/howto_custom_select.asp
 */
 
+@import 'GoldTrimPalette.scss';
+
 /* The container must be positioned relative: */
 .BEDropDown {
     position: relative;
@@ -29,38 +31,37 @@
 
 /* Styles the selected item*/
 .select-selected {
-    background-color: DodgerBlue;
+    background-color: $primary_color;
     height: 65px;
     width: 65px;
     line-height: 65px;
     border-radius: 35px;
+    border: 3px solid $primary_accent;
     text-align: center;
-    color: #ffffff;
+    color: $primary_font_color;
 }
 
 /* Style items (options): */
 .BEDropDown-select-items {
     position: absolute;
-    background-color: DodgerBlue;
+    background-color: $primary_color;
     margin-top: 10px;
     top: 100%;
     z-index: 99;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-
     /* style the items (options): */
     div {
-        color: #ffffff;
+        color: $primary_font_color;
         padding: 15px 20px;
-        border: 1px solid transparent;
-        border-color: transparent rgba(0, 0, 0, 0.1) transparent transparent;
+        border-color: $clear $primary_accent $clear $clear;
         cursor: pointer;
         display: inline-block;
     }
 
     div:hover, .same-as-selected {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: $dimmer;
         border: none;
     }
 }

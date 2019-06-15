@@ -24,18 +24,19 @@
 
 /* Styles the selected item*/
 .select-selected {
-  background-color: DodgerBlue;
+  background-color: #ffffff;
   height: 65px;
   width: 65px;
   line-height: 65px;
   border-radius: 35px;
+  border: 3px solid #D4AF37;
   text-align: center;
-  color: #ffffff; }
+  color: #000000; }
 
 /* Style items (options): */
 .BEDropDown-select-items {
   position: absolute;
-  background-color: DodgerBlue;
+  background-color: #ffffff;
   margin-top: 10px;
   top: 100%;
   z-index: 99;
@@ -44,10 +45,9 @@
   white-space: nowrap;
   /* style the items (options): */ }
   .BEDropDown-select-items div {
-    color: #ffffff;
+    color: #000000;
     padding: 15px 20px;
-    border: 1px solid transparent;
-    border-color: transparent rgba(0, 0, 0, 0.1) transparent transparent;
+    border-color: transparent #D4AF37 transparent transparent;
     cursor: pointer;
     display: inline-block; }
   .BEDropDown-select-items div:hover, .BEDropDown-select-items .same-as-selected {

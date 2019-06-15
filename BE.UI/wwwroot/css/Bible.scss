@@ -1,4 +1,4 @@
-﻿@import 'PastelPalette.scss';
+﻿@import 'GoldTrimPalette.scss';
 
 sup {
     vertical-align: super;
@@ -36,7 +36,7 @@ sup {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 0px 8px 0 $dimmer, 0 6px 20px 0 $dimmer;
 }
 
 #page_content {
@@ -85,6 +85,24 @@ sup {
     left: 0;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: lighten($primary_accent, 30%);
+}
+
+::-webkit-scrollbar-thumb {
+    background: $primary_accent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: darken($primary_accent, 10%);
+}
+
+/* Positioning for smaller screens */
 @media only screen and (max-width: 600px) {
     #search_container {
         margin: 20px;

@@ -36,4 +36,8 @@
     <TypeScriptCompile Include="scripts\BEDropDown.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
+  </ItemGroup>
+
 </Project>
