@@ -1,0 +1,52 @@
+﻿@using BB.Infrastructure.Model
+@using BB.Infrastructure.Service
+@using System.Linq;
+
+@model BibleViewInfo
+
+@inject IBibleService bibleService
+
+@{
+    var LastChapter = await bibleService.GetLastChapterNumberOfBookAsync(Model.MainBible, Model.Book);
+    var BibleBooks = await bibleService.GetBibleBooksAsync();
+    var BibleIDs = (IEnumerable<BibleID>)Enum.GetValues(typeof(BibleID));
+    var CompareBibleIDs = BibleIDs.Where(x => x != BibleID.INVALID).
+                                 Select(y => new { ID = (int)y, Label = y });
+    var MainBibleIDs = BibleIDs.Where(x => x != BibleID.INVALID && x != BibleID.NONE).
+                                 Select(y => new { ID = (int)y, Label = y });
+}
+
+<form asp-action="Index" asp-controller="BibleComparer">
+    <div class="BBDropDown">
+        @Html.DropDownListFor(
+            m => m.MainBible,
+            new SelectList(MainBibleIDs, "ID", "Label", Model.MainBible)
+        )
+    </div>
+
+    <div class="BBDropDown">
+        @Html.DropDownListFor(
+            m => m.CompareBible,
+            new SelectList(CompareBibleIDs, "ID", "Label", Model.CompareBible)
+        )
+    </div>
+
+    <div class="BBDropDown">
+        @Html.DropDownListFor(
+            m => m.Book,
+            new SelectList(BibleBooks, "Book", "Abbreviation", Model.Book)
+        )
+    </div>
+
+    <div class="BBDropDown">
+        @Html.DropDownListFor(
+            m => m.Chapter,
+            new SelectList(Enumerable.Range(1, LastChapter), Model.Chapter),
+            new { @class="chapter_tabs" }
+        )
+    </div>
+
+    <input type="submit" />
+</form>
+
+<script type="text/javascript" src="~/js/BBDropDown.js"></script>

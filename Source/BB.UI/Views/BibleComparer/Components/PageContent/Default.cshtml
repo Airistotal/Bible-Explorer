@@ -1,0 +1,130 @@
+﻿@using BB.Comparer.Model
+@using BB.Infrastructure.Model
+
+@model IEnumerable<ComparedBibleVerse>
+
+<div id="page_content">
+@{
+    // Open content and overlays
+    var content = "<div class='content'>";
+
+    var overlays = new Dictionary<BibleID, string>();
+    var keys = Model.Select(x => x.ComparedVerses).Select(y => y.Keys.ToList()).SelectMany(z => z).Distinct();
+
+    foreach (var key in keys)
+    {
+        overlays.Add(key, $"<div class='overlay'>");
+    }
+
+    foreach (var verse in Model)
+    {
+        // Add verse number
+        var verse_num = $" <sup>{verse.Verse.ToString()}</sup>";
+        content += verse_num;
+        foreach (var key in keys)
+        {
+            overlays[key] += verse_num;
+        }
+
+        var word = string.Empty;
+        var word_comparisons = new Dictionary<BibleID, string>();
+        var words = verse.Text.Trim().Split(' ');
+
+        // Go through each word and check it against the previous word.
+        for (var i = 0; i < words.Length; i++)
+        {
+            var lastword = word;
+            var lastword_comparisons = new Dictionary<BibleID, string>(word_comparisons);
+            word = words[i];
+            word_comparisons.Clear();
+
+            foreach (var key in verse.ComparedVerses.Keys)
+            {
+                var differenceText = verse.GetDifference(key, i);
+
+                if (!string.IsNullOrWhiteSpace(differenceText))
+                {
+                    word_comparisons.Add(key, differenceText);
+                }
+            }
+
+            if (lastword_comparisons.Count > 0 && word_comparisons.Count > 0)
+            {
+                // Both this and the last word are different, add normally
+                foreach (var key in keys)
+                {
+                    overlays[key] += " " + word;
+                }
+                content += " " + word;
+            }
+            else if (lastword_comparisons.Count > 0)
+            {
+                // The last word is different and not this word are different, so close the differences.
+                foreach (var key in keys)
+                {
+                    if (lastword_comparisons.Keys.Contains(key))
+                    {
+                        overlays[key] += $"&nbsp;</span> {word}";
+                    }
+                    else
+                    {
+                        overlays[key] += $"<span class='spacer'>&nbsp;</span> {word}";
+                    }
+                }
+
+                content += $"<span class='spacer'>&nbsp;</span> {word}";
+            }
+            else if (word_comparisons.Count > 0)
+            {
+                // The last word is not different and this word is different, so open the differences.
+                foreach (var key in keys)
+                {
+                    if (word_comparisons.Keys.Contains(key))
+                    {
+                        var tooltiptext = $"<span class='tooltiptext'>{word_comparisons[key]}</span>";
+                        overlays[key] += $" <span class='border2 tooltip'>{tooltiptext}&nbsp;{word}";
+                    }
+                    else
+                    {
+                        overlays[key] += $" <span class='spacer'>&nbsp;</span>{word}";
+                    }
+                }
+
+                content += $" <span class='spacer'>&nbsp;</span>{word}";
+            }
+            else
+            {
+                // No differences now or before, add normally.
+                foreach (var key in keys)
+                {
+                    overlays[key] += " " + word;
+                }
+                content += " " + word;
+            }
+
+            // If it's the last word and it's different, close the difference.
+            if (i == words.Length - 1)
+            {
+                foreach (var key in word_comparisons.Keys)
+                {
+                    overlays[key] += "</span>";
+                }
+            }
+        }
+    }
+
+    // Close content and overlays
+    foreach (var key in keys)
+    {
+        overlays[key] += "</div>";
+    }
+    content += "</div>";
+
+    // Print content and overlays
+    foreach (var key in keys)
+    {
+        ViewContext.Writer.Write(overlays[key]);
+    }
+    ViewContext.Writer.Write(content);
+}
+</div>

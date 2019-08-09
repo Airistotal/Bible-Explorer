@@ -1,0 +1,26 @@
+﻿body {
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  background-color: #ffffff;
+  overflow-x: hidden; }
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block; }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    text-align: center;
+    padding: 5px 0;
+    color: #191919;
+    background-color: #808080;
+    border: 1px solid #0094ff;
+    /* Position the tooltip text - see examples below! */
+    display: inline-table;
+    position: absolute;
+    z-index: 1;
+    top: -30px;
+    padding: 0 5px 0 5px; }
+  .tooltip:hover .tooltiptext {
+    visibility: visible; }
