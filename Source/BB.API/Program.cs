@@ -1,10 +1,10 @@
-﻿namespace BB.UI
-{
-    using System.IO;
-    using Microsoft.AspNetCore;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
+﻿using System.IO;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
+namespace BE.API
+{
     public class Program
     {
         public static void Main(string[] args)
@@ -13,14 +13,14 @@
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    config.SetBasePath(Directory.GetCurrentDirectory());
-                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-                    config.AddEnvironmentVariables();
-                    config.AddCommandLine(args);
-                })
-                .UseStartup<Startup>();
+           WebHost.CreateDefaultBuilder(args)
+               .ConfigureAppConfiguration((hostingContext, config) =>
+               {
+                   config.SetBasePath(Directory.GetCurrentDirectory());
+                   config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                   config.AddEnvironmentVariables();
+                   config.AddCommandLine(args);
+               })
+               .UseStartup<Startup>();
     }
 }

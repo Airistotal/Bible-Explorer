@@ -1,16 +1,16 @@
-﻿namespace BB.UI
-{
-    using BB.Comparer.Business;
-    using BB.Infrastructure.Context;
-    using BB.Infrastructure.Service;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
+﻿using BB.Comparer.Business;
+using BB.Infrastructure.Context;
+using BB.Infrastructure.Service;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
+namespace BE.API
+{
     public class Startup
     {
         public Startup(IConfiguration configuration)
