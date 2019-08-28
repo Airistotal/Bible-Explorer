@@ -36,23 +36,27 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="package-lock.json" />
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
-    <Content Include="src\components\Home.vue" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="vue.config.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="dist\" />
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
-    <Folder Include="src\components\" />
+    <Folder Include="src\models\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="src\models\ComparedBibleVerse.ts" />
+    <TypeScriptCompile Include="src\models\ComparedWord.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\shims-vue.d.ts" />
     <TypeScriptCompile Include="src\shims-tsx.d.ts" />
   </ItemGroup>

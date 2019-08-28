@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace BE.API
 {
@@ -50,17 +51,15 @@ namespace BE.API
                 app.UseHsts();
             }
 
+            app.UseDefaultFiles(new DefaultFilesOptions
+            {
+                DefaultFileNames = new List<string> { "index.html" }
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            var indexDefault = "{{MainBible=1,OtherBibles=null,Book=1,Chapter=1}}";
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=BibleComparer}/{action=Index}/{bibleInfo=" + indexDefault + "}");
-            });
+            app.UseMvc();
         }
 
         public void InitializeIOC(IServiceCollection services)
