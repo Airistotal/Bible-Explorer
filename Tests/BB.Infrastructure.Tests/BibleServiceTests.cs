@@ -9,7 +9,7 @@
     public class BibleServiceTests : DbInMemoryTest
     {
         [TestMethod]
-        public async void When_GetValidChapter_FromValidBible_ReturnsListOfVersesAsync()
+        public void When_GetValidChapter_FromValidBible_ReturnsListOfVerses()
         {
             // Arrange
             var info = new BibleViewInfo()
@@ -22,7 +22,7 @@
             var sut = new BibleService(this.BibleContext);
 
             // Act
-            IList<BibleVerse> chapter = await sut.GetBookChapterVersesAsync(info.MainBible, info.Book, info.Chapter);
+            IList<BibleVerse> chapter = sut.GetBookChapterVerses(info.MainBible, info.Book, info.Chapter);
 
             // Assert
             Assert.IsNotNull(chapter);

@@ -3,10 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using BB.Infrastructure.Context;
     using BB.Infrastructure.Model;
-    using Microsoft.EntityFrameworkCore;
 
     public class BibleService : IBibleService
     {
@@ -17,24 +15,24 @@
             this.bibleContext = bibleContext;
         }
 
-        public Task<List<BibleVerse>> GetBookChapterVersesAsync(BibleID bibleID, int book, int chapter)
+        public List<BibleVerse> GetBookChapterVerses(BibleID bibleID, int book, int chapter)
         {
             return (from verse in this.GetBible(bibleID)
                    where verse.Book == book &&
                          verse.Chapter == chapter
-                   select verse).ToListAsync();
+                   select verse).ToList();
         }
 
-        public Task<int> GetLastChapterNumberOfBookAsync(BibleID bibleID, int book)
+        public int GetLastChapterNumberOfBook(BibleID bibleID, int book)
         {
             return (from verse in this.GetBible(bibleID)
                     where verse.Book == book
-                    select verse.Chapter).MaxAsync();
+                    select verse.Chapter).Max();
         }
 
-        public Task<List<BibleVersion>> GetBibleVersionsAsync()
+        public List<BibleVersion> GetBibleVersions()
         {
-            return this.bibleContext.BibleVersions.ToListAsync();
+            return this.bibleContext.BibleVersions.ToList();
         }
 
         public BibleBook GetBookInfo(int bookNum)
@@ -42,13 +40,13 @@
             return this.bibleContext.BibleBooks.Find(bookNum);
         }
 
-        public Task<List<BibleBookAbbreviation>> GetBibleBooksAsync()
+        public List<BibleBookAbbreviation> GetBibleBooks()
         {
             return (from bookAbbrev in this.bibleContext.BibleBookAbbreviations
                     where bookAbbrev.IsPrimaryAbbreviation
                     orderby bookAbbrev.Abbreviation.Length ascending
                     group bookAbbrev by bookAbbrev.Book into grp
-                    select grp.First()).ToListAsync();
+                    select grp.First()).ToList();
         }
 
         private IQueryable<BibleVerse> GetBible(BibleID bibleID)

@@ -26,19 +26,19 @@ namespace BE.API.Controllers
 
         // GET: api/BibleComparer?mainBible=2&book=1&chapter=1&compareBible=3
         [HttpGet]
-        public async Task<string> GetAsync([FromQuery]BibleID mainBible, 
+        public string Get([FromQuery]BibleID mainBible, 
                                            [FromQuery]int book, 
                                            [FromQuery]int chapter, 
                                            [FromQuery]BibleID compareBible)
         {
             var comparison = new Comparison<BibleVerse>((x, y) => x.Verse.CompareTo(y.Verse));
-            var mainVerses = await this.bibleService.GetBookChapterVersesAsync(mainBible, book, chapter);
+            var mainVerses = this.bibleService.GetBookChapterVerses(mainBible, book, chapter);
             mainVerses.Sort(comparison);
 
             List<BibleVerse> compareVerses = null;
             if (compareBible != BibleID.INVALID && compareBible != BibleID.NONE)
             {
-                compareVerses = await this.bibleService.GetBookChapterVersesAsync(compareBible, book, chapter);
+                compareVerses = this.bibleService.GetBookChapterVerses(compareBible, book, chapter);
                 compareVerses.Sort(comparison);
             }
 
@@ -79,8 +79,8 @@ namespace BE.API.Controllers
                 {
                     MainWord = mainWords[i],
                     Difference = phraseDifference,
-                    IsBeginning = lastDiff == null && textDiff != null,
-                    IsEnd = textDiff != null && nextDiff == null
+                    IsBeginning = lastDiff == null && currDiff != null,
+                    IsEnd = currDiff != null && nextDiff == null
                 });
 
                 lastDiff = currDiff;

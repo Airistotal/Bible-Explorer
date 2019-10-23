@@ -144,7 +144,7 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=localhost;Database=BE;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=localhost;Database=BB;Trusted_Connection=True;");
             }
         }
     }

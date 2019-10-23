@@ -33,8 +33,8 @@ namespace BE.API
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var server = this.Configuration.GetConnectionString("BB");
-            services.AddDbContext<BibleContext>(options => options.UseSqlServer(server));
+            var bbConnectionString = this.Configuration.GetConnectionString("BB");
+            services.AddDbContext<BibleContext>(options => options.UseSqlServer(bbConnectionString));
 
             this.InitializeIOC(services);
         }

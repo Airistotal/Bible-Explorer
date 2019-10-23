@@ -6,12 +6,12 @@
 
     public interface IBibleService
     {
-        Task<List<BibleVerse>> GetBookChapterVersesAsync(BibleID bibleID, int book, int chapter);
+        List<BibleVerse> GetBookChapterVerses(BibleID bibleID, int book, int chapter);
 
-        Task<int> GetLastChapterNumberOfBookAsync(BibleID bibleID, int book);
+        int GetLastChapterNumberOfBook(BibleID bibleID, int book);
 
-        Task<List<BibleVersion>> GetBibleVersionsAsync();
+        List<BibleVersion> GetBibleVersions();
 
-        Task<List<BibleBookAbbreviation>> GetBibleBooksAsync();
+        List<BibleBookAbbreviation> GetBibleBooks();
     }
 }
