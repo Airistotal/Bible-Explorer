@@ -23,7 +23,7 @@
                    select verse).ToList();
         }
 
-        public int GetLastChapterNumberOfBook(BibleID bibleID, int book)
+        public int GetNumberOfChaptersForBookInBible(BibleID bibleID, int book)
         {
             return (from verse in this.GetBible(bibleID)
                     where verse.Book == book

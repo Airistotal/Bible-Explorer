@@ -8,7 +8,7 @@
     {
         List<BibleVerse> GetBookChapterVerses(BibleID bibleID, int book, int chapter);
 
-        int GetLastChapterNumberOfBook(BibleID bibleID, int book);
+        int GetNumberOfChaptersForBookInBible(BibleID bibleID, int book);
 
         List<BibleVersion> GetBibleVersions();
 

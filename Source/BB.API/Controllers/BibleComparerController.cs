@@ -27,9 +27,9 @@ namespace BE.API.Controllers
         // GET: api/BibleComparer?mainBible=2&book=1&chapter=1&compareBible=3
         [HttpGet]
         public string Get([FromQuery]BibleID mainBible, 
-                                           [FromQuery]int book, 
-                                           [FromQuery]int chapter, 
-                                           [FromQuery]BibleID compareBible)
+                          [FromQuery]int book, 
+                          [FromQuery]int chapter, 
+                          [FromQuery]BibleID compareBible)
         {
             var comparison = new Comparison<BibleVerse>((x, y) => x.Verse.CompareTo(y.Verse));
             var mainVerses = this.bibleService.GetBookChapterVerses(mainBible, book, chapter);
