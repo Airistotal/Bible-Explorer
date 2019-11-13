@@ -35,8 +35,10 @@ namespace BE.API
         app.UseDeveloperExceptionPage();
       }
 
-      app.UseHttpsRedirection();
+      app.UseStaticFiles();
+      app.UseDefaultFiles();
 
+      app.UseHttpsRedirection();
       app.UseRouting();
 
       app.UseAuthorization();
