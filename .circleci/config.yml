@@ -14,12 +14,12 @@ jobs:
       - run:
           name: "Build API"
           command: dotnet publish .\Source\BB.API\BB.API.csproj -c Release
-      -run:
+      - run:
           name: "Install UI dependencies"
           command: npm install
-      -run:
+      - run:
           name: "Build UI"
           command: npm run build
-      -run:
+      - run:
           name: "Copy UI to publish folder"
           command: Copy-Item -Path ".\Source\BB.API\wwwroot\*" -Destination ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot" -Recurse
