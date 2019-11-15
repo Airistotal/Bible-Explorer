@@ -20,6 +20,5 @@ jobs:
       - run:
           name: "Build UI"
           command: cd ".\Source\BB.UI"; npm run build
-      - run:
-          name: "Clean and Copy UI to publish folder"
-          command: Remove-Item ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot\*" -Force -Recurse; Copy-Item -Path ".\Source\BB.API\wwwroot\*" -Destination ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot" -Recurse
+      - store_artifacts:
+          path: ./
