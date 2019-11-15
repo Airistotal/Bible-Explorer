@@ -20,5 +20,11 @@ jobs:
       - run:
           name: "Build UI"
           command: cd ".\Source\BB.UI"; npm run build
+      - run:
+          name: "Create wwwroot folder"
+          command: New-Item -Path ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\" -Name "wwwroot" -ItemType "directory"
+      - run:
+          name: "Clean and Copy UI to publish folder"
+          command: Copy-Item -Path ".\Source\BB.API\wwwroot\*" -Destination ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot" -Recurse
       - store_artifacts:
           path: .\Source\BB.API\bin\Release\netcoreapp3.0\publish\
