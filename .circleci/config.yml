@@ -1,8 +1,36 @@
-  version: 2.1
-  jobs:
-    build:
-      docker: 
-        - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
-      steps:
-        - checkout # check out the code in the project directory
-        - run: echo "hello world" # run the `echo` command
+version: 2.1
+
+orbs:
+  win: circleci/windows@1.0.0
+
+jobs:
+  build:
+    executor: win/vs2019
+    steps:
+      - checkout
+      - run:
+          name: "Install API dependencies"
+          command: dotnet restore .\Source\BB.API\BB.API.csproj
+      - run:
+          name: "Build API"
+          command: dotnet publish .\Source\BB.API\BB.API.csproj -c Release
+      - run:
+          name: "Build Tests"
+          command: ForEach ($folder in (Get-ChildItem -Path Tests -Directory)) { dotnet build $folder.FullName }
+      - run:
+          name: "Run Tests"
+          command: ForEach ($folder in (Get-ChildItem -Path Tests -Directory)) { dotnet test $folder.FullName }
+      - run:
+          name: "Install UI dependencies"
+          command: cd ".\Source\BB.UI"; npm install
+      - run:
+          name: "Build UI"
+          command: cd ".\Source\BB.UI"; npm run build
+      - run:
+          name: "Create wwwroot folder"
+          command: New-Item -Path ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\" -Name "wwwroot" -ItemType "directory"
+      - run:
+          name: "Clean and Copy UI to publish folder"
+          command: Copy-Item -Path ".\Source\BB.API\wwwroot\*" -Destination ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot" -Recurse
+      - store_artifacts:
+          path: .\Source\BB.API\bin\Release\netcoreapp3.0\publish\
