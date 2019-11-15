@@ -15,6 +15,12 @@ jobs:
           name: "Build API"
           command: dotnet publish .\Source\BB.API\BB.API.csproj -c Release
       - run:
+          name: "Build Tests"
+          command: ForEach ($folder in (Get-ChildItem -Path Tests -Directory)) { dotnet build $folder.FullName }
+      - run:
+          name: "Run Tests"
+          command: ForEach ($folder in (Get-ChildItem -Path Tests -Directory)) { dotnet test $folder.FullName }
+      - run:
           name: "Install UI dependencies"
           command: cd ".\Source\BB.UI"; npm install
       - run:
