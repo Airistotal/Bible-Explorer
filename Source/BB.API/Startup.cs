@@ -35,12 +35,9 @@ namespace BE.API
         app.UseDeveloperExceptionPage();
       }
 
-      app.UseStaticFiles();
-      app.UseDefaultFiles();
-
+      app.UseFileServer();
       app.UseHttpsRedirection();
       app.UseRouting();
-
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>

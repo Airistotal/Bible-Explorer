@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   win: circleci/windows@1.0.0
+  aws-cli: circleci/aws-cli@0.1.4
 
 jobs:
   build:
@@ -34,3 +35,22 @@ jobs:
           command: Copy-Item -Path ".\Source\BB.API\wwwroot\*" -Destination ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot" -Recurse
       - store_artifacts:
           path: .\Source\BB.API\bin\Release\netcoreapp3.0\publish\
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: scp -r .\ Administrator@3.17.39.158:\inetpub\wwwroot\BB
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

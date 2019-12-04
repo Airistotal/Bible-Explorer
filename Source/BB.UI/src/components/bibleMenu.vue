@@ -9,8 +9,8 @@
         <HorizontalDropDown ApiEndpoint="./api/BibleMeta/getBibleBooks" 
                             HorizontalDropDownId="selectBook" />
 
-        <HorizontalDropDown ApiEndpoint="./api/BibleMeta/getBibleBookChapters" 
-                            ApiQueryString="?bible=1&book=1" 
+        <HorizontalDropDown ApiEndpoint="./api/BibleMeta/GetChaptersForBookInBible" 
+                            ApiQueryString="?bible=2&book=1"
                             HorizontalDropDownId="selectChapter" />
     </div>
 </template>
@@ -28,4 +28,10 @@
     export default class BibleMenu extends Vue {}
 </script>
 
-<style></style>
+<style>
+  #bibleMenu {
+    margin-top: 75px;
+    margin-left:75px;
+    margin-right:75px;
+  }
+</style>
