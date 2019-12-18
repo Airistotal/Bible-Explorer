@@ -33,13 +33,16 @@ jobs:
       - run:
           name: "Clean and Copy UI to publish folder"
           command: Copy-Item -Path ".\Source\BB.API\wwwroot\*" -Destination ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot" -Recurse
-      - store_artifacts:
-          path: .\Source\BB.API\bin\Release\netcoreapp3.0\publish\
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot"
   deploy:
     machine:
       enabled: true
     steps:
-      - run: cd ~/
+      - attach_workspace:
+          at: .
       - run: ls -al
       - run:
           name: Deploy Over SSH
