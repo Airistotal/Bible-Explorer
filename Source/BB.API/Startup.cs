@@ -35,6 +35,11 @@ namespace BE.API
         app.UseDeveloperExceptionPage();
       }
 
+      if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
+      {
+        app.UseExceptionHandler();
+      }
+
       app.UseFileServer();
       app.UseHttpsRedirection();
       app.UseRouting();
