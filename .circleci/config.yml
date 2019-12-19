@@ -47,8 +47,6 @@ jobs:
           command: |
               cd ./Source/BB.API/bin/Release/netcoreapp3.0/publish
               scp -r * Administrator@3.17.39.158:/inetpub/BB
-              ssh Administrator@3.17.39.158
-              cp C:/inetpub/appsettings.json C:/inetpub/BB/appsettings.json
 
 workflows:
   version: 2
