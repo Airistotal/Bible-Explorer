@@ -36,18 +36,17 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - .\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot
+            - .\Source\BB.API\bin\Release\netcoreapp3.0\publish
+            - .\Source\BB.API\bin\Release\netcoreapp3.0\publish
   deploy:
     machine:
       enabled: true
     steps:
       - attach_workspace:
           at: .
-      - run: ls -al
-      - run: ls ./Source/BB.API/bin/Release/netcoreapp3.0/publish/wwwroot -al
       - run:
           name: Deploy Over SSH
-          command: scp -r ./Source/BB.API/bin/Release/netcoreapp3.0/publish/wwwroot Administrator@3.17.39.158:/inetpub/wwwroot/BB
+          command: scp -r ./Source/BB.API/bin/Release/netcoreapp3.0/publish Administrator@3.17.39.158:/inetpub/wwwroot/BB
 
 workflows:
   version: 2
