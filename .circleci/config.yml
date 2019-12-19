@@ -36,7 +36,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - ".\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot"
+            - .\Source\BB.API\bin\Release\netcoreapp3.0\publish\wwwroot
   deploy:
     machine:
       enabled: true
