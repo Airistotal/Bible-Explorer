@@ -46,7 +46,7 @@ jobs:
           at: .
       - run:
           name: Deploy Over SSH
-          command: scp -r ./Source/BB.API/bin/Release/netcoreapp3.0/publish Administrator@3.17.39.158:/inetpub/wwwroot/BB
+          command: scp -r ./Source/BB.API/bin/Release/netcoreapp3.0/publish Administrator@3.17.39.158:/inetpub/BB
 
 workflows:
   version: 2
