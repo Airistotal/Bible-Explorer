@@ -42,18 +42,14 @@ namespace BE.API
       {
         app.UseExceptionHandler(errorApp =>
         {
-          errorApp.Run(async context =>
+          errorApp.Run(context =>
           {
             var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
             var exception = errorFeature.Error;
 
-            // log the exception etc..
-            // produce some response for the caller
-            await Task.Run(
-              () =>
-              {
-                Log.Logger.Error(exception, "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}");
-              });
+            Log.Logger.Error(exception, "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}");
+
+            return Task.CompletedTask;
           });
         });
       }
