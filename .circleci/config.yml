@@ -1,11 +1,11 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@1.0.0
+  windows: circleci/windows@2.2.0
 
 jobs:
   build:
-    executor: win/vs2019
+    executor: windows/default
     steps:
       - checkout
       - run:
