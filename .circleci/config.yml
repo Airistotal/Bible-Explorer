@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   win: circleci/windows@1.0.0
-  aws-cli: circleci/aws-cli@0.1.4
 
 jobs:
   build:
@@ -36,7 +35,6 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - .\Source\BB.API\bin\Release\netcoreapp3.0\publish
             - .\Source\BB.API\bin\Release\netcoreapp3.0\publish
   deploy:
     machine:
