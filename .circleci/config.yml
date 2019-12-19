@@ -45,11 +45,10 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Go to publish folder
-          command: cd ./Source/BB.API/bin/Release/netcoreapp3.0/publish
-      - run:
           name: Deploy Over SSH
-          command: scp -r * Administrator@3.17.39.158:/inetpub/BB
+          command: |
+              cd ./Source/BB.API/bin/Release/netcoreapp3.0/publish
+              scp -r * Administrator@3.17.39.158:/inetpub/BB
 
 workflows:
   version: 2
