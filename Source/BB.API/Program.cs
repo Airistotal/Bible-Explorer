@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
 using System.IO;
 
 namespace BE.API
@@ -10,11 +12,18 @@ namespace BE.API
   {
     public static void Main(string[] args)
     {
+      Log.Logger = new LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .WriteTo.File("log.txt", LogEventLevel.Error, rollingInterval: RollingInterval.Day)
+            .WriteTo.Console()
+            .CreateLogger();
+
       CreateHostBuilder(args).Build().Run();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
+            .UseSerilog()
             .ConfigureLogging(logging =>
             {
               logging.ClearProviders();

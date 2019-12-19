@@ -2,11 +2,14 @@
 using BB.Infrastructure.Context;
 using BB.Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
+using System.Threading.Tasks;
 
 namespace BE.API
 {
@@ -37,7 +40,22 @@ namespace BE.API
 
       if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
       {
-        app.UseExceptionHandler();
+        app.UseExceptionHandler(errorApp =>
+        {
+          errorApp.Run(async context =>
+          {
+            var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
+            var exception = errorFeature.Error;
+
+            // log the exception etc..
+            // produce some response for the caller
+            await Task.Run(
+              () =>
+              {
+                Log.Logger.Error(exception, "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}");
+              });
+          });
+        });
       }
 
       app.UseFileServer();
