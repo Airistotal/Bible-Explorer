@@ -16,7 +16,7 @@
             {
                 MainBible = BibleID.ASV,
                 Book = 1,
-                Chapter = 1
+                Chapter = 1,
             };
 
             var sut = new BibleService(this.BibleContext);

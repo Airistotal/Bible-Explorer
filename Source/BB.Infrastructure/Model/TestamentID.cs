@@ -4,6 +4,6 @@
     {
         ERROR,
         OldTestament,
-        NewTestament
+        NewTestament,
     }
 }

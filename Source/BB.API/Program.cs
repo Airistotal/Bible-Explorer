@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Serilog;
-using Serilog.Events;
-using System.IO;
-
-namespace BE.API
+﻿namespace BE.API
 {
+  using System.IO;
+  using Microsoft.AspNetCore.Hosting;
+  using Microsoft.Extensions.Configuration;
+  using Microsoft.Extensions.Hosting;
+  using Microsoft.Extensions.Logging;
+  using Serilog;
+  using Serilog.Events;
+
   public class Program
   {
     public static void Main(string[] args)
     {
       Log.Logger = new LoggerConfiguration()
             .Enrich.FromLogContext()
-            .WriteTo.File("log.txt", LogEventLevel.Error, rollingInterval: RollingInterval.Day)
+            .WriteTo.File("./Log/log.txt", LogEventLevel.Error, rollingInterval: RollingInterval.Day)
             .WriteTo.Console()
             .CreateLogger();
 

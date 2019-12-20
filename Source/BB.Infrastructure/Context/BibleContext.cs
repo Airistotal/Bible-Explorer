@@ -76,7 +76,7 @@
                 entity.Property(e => e.GenreName).HasColumnName("n");
             });
 
-                modelBuilder.Entity<ASVBibleVerse>(entity =>
+            modelBuilder.Entity<ASVBibleVerse>(entity =>
             {
                 entity.ToTable("t_asv");
                 entity.Property(e => e.Book).HasColumnName("b");

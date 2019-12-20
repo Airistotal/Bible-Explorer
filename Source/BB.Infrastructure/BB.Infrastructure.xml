@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BB.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="M:BB.Infrastructure.Model.BibleViewInfo.CleanSelf">
+            <summary>
+            This will make sure all the properties are valid properties.
+            Returns true if self was changed, false if not.
+            </summary>
+            <returns>Returns true if self was changed, false if not.</returns>
+        </member>
+    </members>
+</doc>

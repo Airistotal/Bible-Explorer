@@ -1,7 +1,7 @@
 ﻿namespace BB.API.Controllers
 {
   using System.Linq;
-
+  using BB.Infrastructure.Attributes;
   using BB.Infrastructure.Model;
   using BB.Infrastructure.Model.ApiContract;
   using BB.Infrastructure.Service;
@@ -21,6 +21,7 @@
 
     // get: api/BibleMeta/GetBibles
     [Route("GetBibles")]
+    [ErrorLogging]
     public string GetBibles()
     {
       var bibleVersions = this.bibleService.GetBibleVersions();
@@ -34,6 +35,7 @@
 
     // get: api/BibleMeta/GetBibleBooks
     [Route("GetBibleBooks")]
+    [ErrorLogging]
     public string GetBibleBooks()
     {
       var bibleBooks = this.bibleService.GetBibleBooks();
@@ -47,6 +49,7 @@
 
     // get: api/BibleMeta/GetChaptersForBookInBible?bible=1&book=1
     [Route("GetChaptersForBookInBible")]
+    [ErrorLogging]
     public string GetChaptersForBookInBible([FromQuery]BibleID bible, [FromQuery]int book)
     {
       var numberOfChapters = this.bibleService.GetNumberOfChaptersForBookInBible(bible, book);

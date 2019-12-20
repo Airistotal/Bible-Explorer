@@ -1,23 +1,23 @@
-﻿using BB.Comparer.Business;
-using BB.Infrastructure.Context;
-using BB.Infrastructure.Service;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Serilog;
-using System.Threading.Tasks;
-
-namespace BE.API
+﻿namespace BE.API
 {
+  using System.Threading.Tasks;
+  using BB.Comparer.Business;
+  using BB.Infrastructure.Context;
+  using BB.Infrastructure.Service;
+  using Microsoft.AspNetCore.Builder;
+  using Microsoft.AspNetCore.Diagnostics;
+  using Microsoft.AspNetCore.Hosting;
+  using Microsoft.EntityFrameworkCore;
+  using Microsoft.Extensions.Configuration;
+  using Microsoft.Extensions.DependencyInjection;
+  using Microsoft.Extensions.Hosting;
+  using Serilog;
+
   public class Startup
   {
     public Startup(IConfiguration configuration)
     {
-      Configuration = configuration;
+      this.Configuration = configuration;
     }
 
     public IConfiguration Configuration { get; }

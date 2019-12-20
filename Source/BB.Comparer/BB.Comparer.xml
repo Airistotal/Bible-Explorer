@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BB.Comparer</name>
+    </assembly>
+    <members>
+        <member name="M:BB.Comparer.Business.TextDiff.CompareText_Indices(System.String,System.String,System.Boolean)">
+            <summary>
+            Compares two sentences by word and returns the commonalities.
+            </summary>
+            <param name="a">the first string to compare.</param>
+            <param name="b">the second string to compare.</param>
+            <param name="ignoreCase">choose whether to ignore the case of the strings a and b.</param>
+            <returns>
+            A dictionary where the keys are indices (a, b) and the values
+            are the lengths of the commonalities.
+            </returns>
+        </member>
+    </members>
+</doc>

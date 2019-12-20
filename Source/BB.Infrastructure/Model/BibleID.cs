@@ -10,6 +10,6 @@
         KJV,
         WBT,
         WEB,
-        YLT
+        YLT,
     }
 }

@@ -75,14 +75,14 @@
         }
 
         /// <summary>
-        /// Compares two sentences by word and returns the commonalities
+        /// Compares two sentences by word and returns the commonalities.
         /// </summary>
-        /// <param name="a">the first string to compare</param>
-        /// <param name="b">the second string to compare</param>
-        /// <param name="ignoreCase">choose whether to ignore the case of the strings a and b</param>
+        /// <param name="a">the first string to compare.</param>
+        /// <param name="b">the second string to compare.</param>
+        /// <param name="ignoreCase">choose whether to ignore the case of the strings a and b.</param>
         /// <returns>
         /// A dictionary where the keys are indices (a, b) and the values
-        /// are the lengths of the commonalities
+        /// are the lengths of the commonalities.
         /// </returns>
         private Dictionary<Tuple<int, int>, int> CompareText_Indices(string a, string b, bool ignoreCase = true)
         {
