@@ -42,10 +42,13 @@
 
         public List<BibleBookAbbreviation> GetBibleBooks()
         {
-            return (from bookAbbrev in this.bibleContext.BibleBookAbbreviations
-                    where bookAbbrev.IsPrimaryAbbreviation
-                    orderby bookAbbrev.Abbreviation.Length ascending
-                    group bookAbbrev by bookAbbrev.Book into grp
+            var primaryAbbrevs = (from bookAbbrev in this.bibleContext.BibleBookAbbreviations
+                                  where bookAbbrev.IsPrimaryAbbreviation
+                                  orderby bookAbbrev.Abbreviation.Length ascending
+                                  select bookAbbrev).ToList();
+
+            return (from abbrevs in primaryAbbrevs
+                    group abbrevs by abbrevs.Book into grp
                     select grp.First()).ToList();
         }
 
