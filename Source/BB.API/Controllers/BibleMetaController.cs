@@ -41,7 +41,7 @@
       var bibleBooks = this.bibleService.GetBibleBooks();
       var bibleBooksForDropdown = bibleBooks.Select(book =>
       {
-        return new DropDownData() { Text = book.Abbreviation, Value = book.Id };
+        return new DropDownData() { Text = book.Abbreviation, Value = book.Book };
       });
 
       return JsonConvert.SerializeObject(bibleBooksForDropdown);

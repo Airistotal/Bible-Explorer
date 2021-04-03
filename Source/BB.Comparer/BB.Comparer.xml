@@ -4,7 +4,7 @@
         <name>BB.Comparer</name>
     </assembly>
     <members>
-        <member name="M:BB.Comparer.Business.TextDiff.CompareText_Indices(System.String,System.String,System.Boolean)">
+        <member name="M:BB.Comparer.Business.TextComparer.CompareText_Indices(System.String,System.String,System.Boolean)">
             <summary>
             Compares two sentences by word and returns the commonalities.
             </summary>
@@ -14,6 +14,26 @@
             <returns>
             A dictionary where the keys are indices (a, b) and the values
             are the lengths of the commonalities.
+            </returns>
+        </member>
+        <member name="M:BB.Comparer.Business.TextComparer.GetHighestCoverageMatchingSequences(System.Collections.Generic.Dictionary{System.Tuple{System.Int32,System.Int32},System.Int32})">
+            <summary>
+            Finds a set of matching sequences that don't overlap, but have good coverage over
+            the originals used to create the matching sequences.
+            </summary>
+            <param name="allMatchingSequences">All matching sequences.</param>
+            <returns>A dictionary where the keys are indices (a, b) and the values
+            are the lengths of the commonalities, where the indices+length don't overlap</returns>
+        </member>
+        <member name="M:BB.Comparer.Business.TextComparer.GetMatchingSequences(System.String[],System.String[])">
+            <summary>
+            Gets a list of all matching sequences in two lists of strings.
+            </summary>
+            <param name="wordsA">The first list of words to compare.</param>
+            <param name="wordsB">The second list of words to compare.</param>
+            <returns>
+            A dictionary that has the starting index in wordsA and wordsB as the Tuple key
+            with the number of matching words as the value.
             </returns>
         </member>
     </members>

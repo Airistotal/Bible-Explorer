@@ -71,7 +71,7 @@
       services.AddDbContext<BibleContext>(options => options.UseSqlServer(bbConnectionString));
 
       services.AddTransient<IBibleService, BibleService>();
-      services.AddTransient<ITextDiff, TextDiff>();
+      services.AddTransient<ITextComparer, TextComparer>();
     }
   }
 }

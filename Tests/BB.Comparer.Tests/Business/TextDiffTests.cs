@@ -13,7 +13,7 @@
             string orig = "a b c";
             string other = "a b d";
 
-            TextDiff sut = new TextDiff();
+            TextComparer sut = new TextComparer();
 
             CompareResult result = sut.GetTextDifferences(orig, other);
 
@@ -30,7 +30,7 @@
             string orig = "a b c";
             string other = "b c";
 
-            TextDiff sut = new TextDiff();
+            TextComparer sut = new TextComparer();
 
             CompareResult result = sut.GetTextDifferences(orig, other);
 
@@ -47,7 +47,7 @@
             string orig = "b d";
             string other = "b d e";
 
-            TextDiff sut = new TextDiff();
+            TextComparer sut = new TextComparer();
 
             CompareResult result = sut.GetTextDifferences(orig, other);
 
@@ -64,7 +64,7 @@
             string orig = "a b c d e f a d";
             string other = "a b l d e a d h";
 
-            TextDiff sut = new TextDiff();
+            TextComparer sut = new TextComparer();
 
             CompareResult result = sut.GetTextDifferences(orig, other);
 
@@ -91,7 +91,7 @@
             string orig = "a b c d e f";
             string other = "d e f a b c";
 
-            TextDiff sut = new TextDiff();
+            TextComparer sut = new TextComparer();
 
             CompareResult result = sut.GetTextDifferences(orig, other);
 

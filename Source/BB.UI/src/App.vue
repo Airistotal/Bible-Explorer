@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <BibleMenu></BibleMenu>
+    <BibleMenu @navigate="navigate"></BibleMenu>
     <div id="bibleContent">
       <template v-for="verse in verses">
         <sup>{{verse.Verse}}</sup>
@@ -29,8 +29,12 @@
     verses: ComparedBibleVerse[] = [];
 
     created() {
+      this.navigate();
+    }
+
+    navigate() {
       this.axios
-        .get("./api/BibleComparer?mainBible=2&book=1&chapter=1&compareBible=3")
+        .get(this.$store.getters.getBibleCompareEndpoint)
         .then((response: AxiosResponse<ComparedBibleVerse[]>) => {
           try {
             this.verses = response.data;
@@ -52,10 +56,16 @@
     width: 100%;
   }
 
+  sup { 
+    margin-left: 5px;
+  }
+
   .Word {
     display: inline-block;
     padding-left: 2px;
     padding-right: 2px;
+    line-height: 23px;
+    margin-bottom: 5px;
   }
 
   .Highlight {

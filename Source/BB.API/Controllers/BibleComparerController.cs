@@ -16,14 +16,14 @@
   public class BibleComparerController : ControllerBase
   {
     private readonly IBibleService bibleService;
-    private readonly ITextDiff textDiff;
+    private readonly ITextComparer textComparer;
 
     public BibleComparerController(
       IBibleService bibleService,
-      ITextDiff textDiff)
+      ITextComparer textComparer)
     {
       this.bibleService = bibleService;
-      this.textDiff = textDiff;
+      this.textComparer = textComparer;
     }
 
     // GET: api/BibleComparer?mainBible=2&book=1&chapter=1&compareBible=3
@@ -40,19 +40,23 @@
       mainVerses.Sort(comparison);
 
       List<BibleVerse> compareVerses = null;
-      if (compareBible != BibleID.INVALID && compareBible != BibleID.NONE)
+      if (compareBible != BibleID.INVALID)
       {
         compareVerses = this.bibleService.GetBookChapterVerses(compareBible, book, chapter);
         compareVerses.Sort(comparison);
       }
 
-      List<ComparedBibleVerse> comparedBibleVerses = new List<ComparedBibleVerse>();
+      var comparedBibleVerses = new List<ComparedBibleVerse>();
       for (int j = 0; j < mainVerses.Count; j++)
       {
         if (compareVerses != null)
         {
           comparedBibleVerses.Add(
               new ComparedBibleVerse(mainVerses[j], this.GetComparedWords(mainVerses[j], compareVerses[j])));
+        }
+        else
+        {
+          comparedBibleVerses.Add(new ComparedBibleVerse(mainVerses[j], this.GetEmptyComparedWords(mainVerses[j])));
         }
       }
 
@@ -61,14 +65,14 @@
 
     private List<ComparedWord> GetComparedWords(BibleVerse mainVerse, BibleVerse compareVerse)
     {
-      CompareResult diff = this.textDiff.GetTextDifferences(mainVerse.Text, compareVerse.Text);
+      CompareResult diff = this.textComparer.GetTextDifferences(mainVerse.Text, compareVerse.Text);
 
       var mainWords = mainVerse.Text.Trim().Split(' ');
       var compareWords = compareVerse.Text.Trim().Split(' ');
 
-      List<ComparedWord> comparedWords = new List<ComparedWord>();
+      var comparedWords = new List<ComparedWord>();
+      var currDiff = diff.GetDifference(0);
       Tuple<int, int> lastDiff = null;
-      Tuple<int, int> currDiff = diff.GetDifference(0);
       for (int i = 0; i < mainWords.Length; i++)
       {
         string phraseDifference = null;
@@ -88,6 +92,23 @@
 
         lastDiff = currDiff;
         currDiff = nextDiff;
+      }
+
+      return comparedWords;
+    }
+
+    private List<ComparedWord> GetEmptyComparedWords(BibleVerse mainVerse)
+    {
+      var comparedWords = new List<ComparedWord>();
+      foreach (var word in mainVerse.Text.Trim().Split(' '))
+      {
+        comparedWords.Add(new ComparedWord()
+        {
+          Difference = null,
+          IsBeginning = false,
+          IsEnd = false,
+          MainWord = word,
+        });
       }
 
       return comparedWords;

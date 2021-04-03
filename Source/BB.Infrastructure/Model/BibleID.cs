@@ -3,7 +3,6 @@
     public enum BibleID
     {
         INVALID = 0,
-        NONE,
         ASV,
         BBE,
         DARBY,

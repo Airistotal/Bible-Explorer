@@ -2,7 +2,7 @@
 {
     using BB.Comparer.Model;
 
-    public interface ITextDiff
+    public interface ITextComparer
     {
         CompareResult GetTextDifferences(string orig, string other, bool ignoreCase = true);
     }

@@ -27,8 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BB.Infrastructure.Tests", "
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "BB.UI", "Source\BB.UI\BB.UI.njsproj", "{A3883E12-0FEB-45BE-8AC9-E2854AEC1DB3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigCircleCI", "ConfigCircleCI", "{E15039BE-5BCC-4B0E-946D-B89E9A6DC312}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CIConfig", "CIConfig", "{E15039BE-5BCC-4B0E-946D-B89E9A6DC312}"
 	ProjectSection(SolutionItems) = preProject
+		aws-windows-deployment-manifest.json = aws-windows-deployment-manifest.json
 		.circleci\config.yml = .circleci\config.yml
 	EndProjectSection
 EndProject

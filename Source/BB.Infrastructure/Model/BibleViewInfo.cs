@@ -5,7 +5,7 @@
         public BibleViewInfo()
         {
             this.MainBible = BibleID.ASV;
-            this.CompareBible = BibleID.NONE;
+            this.CompareBible = BibleID.ASV;
             this.Book = 1;
             this.Chapter = 1;
         }
@@ -35,7 +35,7 @@
 
             if (this.CompareBible == BibleID.INVALID)
             {
-                this.CompareBible = BibleID.NONE;
+                this.CompareBible = BibleID.ASV;
                 changed = true;
             }
 
