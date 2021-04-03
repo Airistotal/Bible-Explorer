@@ -11,22 +11,22 @@
     "name": ""
   },
   "dependencies": {
-    "@types/lodash": "^4.14.149",
+    "@types/lodash": "^4.14.168",
     "axios": "0.19.0",
-    "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
     "vue": "2.5.17",
     "vue-axios": "2.1.4",
     "vue-class-component": "6.0.0",
     "vue-property-decorator": "7.0.0",
-    "vuex": "^3.1.2"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@types/jquery": "^3.3.31",
+    "@types/jquery": "^3.5.5",
     "@vue/cli-plugin-babel": "^3.12.1",
     "@vue/cli-plugin-typescript": "3.0.4",
-    "@vue/cli-service": "^4.1.2",
-    "node-sass": "^4.13.0",
+    "@vue/cli-service": "^4.5.12",
+    "node-sass": "^4.14.1",
     "sass-loader": "^7.3.1",
     "typescript": "3.1.1",
     "vue-template-compiler": "2.5.17"
