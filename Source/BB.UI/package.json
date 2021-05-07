@@ -15,7 +15,7 @@
     "axios": "^0.21.1",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
-    "vue": "2.5.17",
+    "vue": "2.6.12",
     "vue-axios": "2.1.4",
     "vue-class-component": "6.0.0",
     "vue-property-decorator": "7.0.0",
