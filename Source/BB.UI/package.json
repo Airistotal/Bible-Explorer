@@ -11,7 +11,7 @@
     "name": ""
   },
   "dependencies": {
-    "@types/lodash": "^4.14.168",
+    "@types/lodash": "^4.14.169",
     "axios": "^0.21.1",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
